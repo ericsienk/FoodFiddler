@@ -1,0 +1,70 @@
+[
+  {
+    "recipeId" : 1,
+    "title" : "Banana Muffins",
+    "method" : "Bake",
+    "prep" : "Pre-heat 350°",
+    "minutes" : 60,
+    "serves" : 12,
+    "img" : "http://www.centercutcook.com/wp-content/uploads/2015/10/pumpkin-banana-muffins-4.jpg",
+    "ingredients" : [
+      {
+        "amount" : "1 1/2 cups",
+        "name" : "flour",
+        "ingredientTag" : "FLOUR"
+      },
+      {
+        "amount" : "1 cup",
+        "name" : "sugar",
+        "ingredientTag" : "SUGAR"
+      },
+      {
+        "amount" : "1 teaspoon",
+        "name" : "baking powder",
+        "ingredientTag" : "BAKEPWDR"
+      },
+      {
+        "amount" : "1/2 teaspoon",
+        "name" : "baking soda",
+        "ingredientTag" : "BAKESODA"
+      },
+      {
+        "amount" : "1/2 teaspoon",
+        "name" : "salt",
+        "ingredientTag" : "SALT"
+      },
+      {
+        "amount" : "1",
+        "name" : "egg",
+        "ingredientTag" : "EGG"
+      },
+      {
+        "amount" : "1/2 cup",
+        "name" : "milk",
+        "ingredientTag" : "MILK"
+      },
+      {
+        "amount" : "1 teaspoon",
+        "name" : "vanilla",
+        "ingredientTag" : "VANILLA"
+      },
+      {
+        "amount" : "1/2 cup",
+        "name" : "melted butter",
+        "ingredientTag" : "BUTTER"
+      },
+      {
+        "amount" : "2",
+        "name" : "bananas",
+        "ingredientTag" : "BANANA"
+      },
+      {
+        "amount" : "1 cup",
+        "name" : "mini semi-sweet chocolate chips",
+        "ingredientTag" : "CHOCHIPS"
+      }
+    ],
+    "color" : "yellow",
+    "instructions" : "Combine flour, sugar, baking powder, baking soda, and salt.</br></br>Add egg, milk, vanilla, and melted butter.</br></br>Fold in mashed bananas and chocolate chips.</br></br>Fill a muffin tin with liners with batter</br></br>Bake for 20 minutes or until springs back when touched.</br></br>Let muffins rest in the tin for 5 minutes and then take out to completely cool."
+  }
+]

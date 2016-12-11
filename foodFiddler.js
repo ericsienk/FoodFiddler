@@ -4,6 +4,9 @@
     var appDependencies = [
         'ngMaterial',
         'ngRoute',
+        'ngSanitize',
+        'foodfiddler.ff-filters',
+        'foodfiddler.service.recipes',
         'foodfiddler.directive.recipeView',
         'foodfiddler.home'
     ];

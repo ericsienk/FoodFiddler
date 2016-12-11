@@ -5,7 +5,7 @@
             return ({
                 restrict: 'AE',
                 scope: {
-
+                    recipe : '='
                 },
                 replace: true,
                 template: '<div ng-include="\'common/partials/recipe-view.html\'"></div>',

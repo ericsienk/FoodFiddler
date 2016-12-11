@@ -1,1 +1,114 @@
-Hello
+<style>
+    .back-yellow {  background: #EDBC5E;  }
+    .font-yellow {  color : #EDBC5E;  }
+    .back-purple {  background: #CBC7DF;  }
+    .font-purple {  color : #CBC7DF;  }
+    .back-green {  background: #CAE0C7;  }
+    .font-green {  color : #CAE0C7;  }
+    .back-pink {  background: #E2C7D2;  }
+    .font-pink {  color : #E2C7D2;  }
+
+    .recipe-jumbotron {
+        text-align: center;
+        text-transform: uppercase;
+        border-bottom: 2px solid #E6E7E8;
+        padding-bottom: 9px;
+        padding-top:32px;
+    }
+
+    .marginLeftRight15Percent {
+        margin: 0 15%;
+    }
+
+    .margin0px {
+        margin: 0;
+    }
+
+    .textAlignRight {
+        text-align: right;
+    }
+
+    .bold {
+        font-weight:bold;
+    }
+
+    .desc-text {
+        font-size: 12px;
+    }
+
+    .sub-text {
+        color: #cfcfd0;
+        font-weight: bold;
+    }
+
+    .item-container {
+        border-radius: 5px;
+        margin: 18px;
+        padding: 18px;
+        color: white;
+    }
+
+    .instruction-container {
+        margin: 18px;
+        padding:18px;
+    }
+
+    .recipe-container {
+        box-shadow: 0 0 6px 0 #aaa;
+        border-radius: 2px;
+        background-color:white;
+    }
+
+    .info-icon {
+        font-size : 80px;
+    }
+</style>
+
+<div class="container recipe-container">
+    <div class="recipe-jumbotron">
+        <h2 class="bold">{{recipe.title}}</h2>
+    </div>
+    <div class="recipe-jumbotron">
+        <div class="marginLeftRight15Percent">
+            <div class="row">
+                <div class="col-xs-3">
+                    <div class="icon-MIT info-icon {{ 'font-' + recipe.color }}"></div>
+                    <div class="desc-text">METHOD</div>
+                    <div class="sub-text">{{recipe.method}}</div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="desc-text">PREP</div>
+                    <div class="sub-text">{{recipe.prep}}</div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="desc-text">MINUTES</div>
+                    <div class="sub-text">{{recipe.minutes}}</div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="desc-text">SERVES</div>
+                    <div class="sub-text">{{recipe.serves}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="item-container {{'back-' + recipe.color }}">
+                <div class="row" data-ng-repeat="i in recipe.ingredients">
+                    <div class="col-xs-8 textAlignRight">
+                        <p class="margin0px bold">{{i.amount}}</p>
+                        <p>{{i.name}}</p>
+                    </div>
+                    <div class="col-xs-4">
+                        <span>icon</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="instruction-container bold">
+                <div ng-bind-html="recipe.instructions"></div>
+            </div>
+        </div>
+    </div>
+</div>

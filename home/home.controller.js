@@ -8,7 +8,16 @@ angular.module('foodfiddler.home', ['ngRoute'])
         });
 
     }])
-
-    .controller('homeCtrl', ['$scope', function($scope) {
+    .controller('homeCtrl', ['$scope', 'ffRecipeService', function($scope,ffRecipeService) {
         console.log("home loaded");
+
+        $scope.recipe = {};
+        ffRecipeService.getRecipes().then(function(data){
+            ffRecipeService.setRecipes(data.data);
+            $scope.recipe = ffRecipeService.getRecipeById(1);
+        }, function(error) {
+
+        });
+
+        $scope.recipe = ffRecipeService.getRecipeById(1);
 }]);
