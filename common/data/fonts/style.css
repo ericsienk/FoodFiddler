@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('icomoon.eot?cae51u');
-  src:  url('icomoon.eot?cae51u#iefix') format('embedded-opentype'),
-    url('icomoon.ttf?cae51u') format('truetype'),
-    url('icomoon.woff?cae51u') format('woff'),
-    url('icomoon.svg?cae51u#icomoon') format('svg');
+  src:  url('icomoon.eot?d6q8j0');
+  src:  url('icomoon.eot?d6q8j0#iefix') format('embedded-opentype'),
+    url('icomoon.ttf?d6q8j0') format('truetype'),
+    url('icomoon.woff?d6q8j0') format('woff'),
+    url('icomoon.svg?d6q8j0#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,7 +24,79 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-MIT:before {
+.icon-UTIL:before {
   content: "\e900";
+}
+.icon-SUGAR:before {
+  content: "\e901";
+}
+.icon-BROWN_SUG:before {
+  content: "\e902";
+}
+.icon-BUTTER:before {
+  content: "\e903";
+}
+.icon-CLOCK:before {
+  content: "\e904";
+}
+.icon-COW:before {
+  content: "\e906";
+}
+.icon-COW_F:before {
+  content: "\e907";
+}
+.icon-EGG:before {
+  content: "\e908";
+}
+.icon-EGG_W:before {
+  content: "\e909";
+}
+.icon-FLOUR:before {
+  content: "\e90a";
+}
+.icon-KISS:before {
+  content: "\e90b";
+}
+.icon-MARG:before {
+  content: "\e90c";
+}
+.icon-MIT:before {
+  content: "\e90d";
+}
+.icon-PEANUT:before {
+  content: "\e90e";
+}
+.icon-PIE_SHELL:before {
+  content: "\e90f";
+}
+.icon-POW_SUGAR:before {
+  content: "\e910";
+}
+.icon-PRETZEL:before {
+  content: "\e911";
+}
+.icon-PUDDING:before {
+  content: "\e912";
+}
+.icon-PUMPKIN:before {
+  content: "\e913";
+}
+.icon-SERVE:before {
+  content: "\e914";
+}
+.icon-SHORT:before {
+  content: "\e915";
+}
+.icon-SOUR_CRM:before {
+  content: "\e916";
+}
+.icon-SPOON:before {
+  content: "\e917";
+}
+.icon-VANILLA:before {
+  content: "\e918";
+}
+.icon-VEG_OIL:before {
+  content: "\e919";
 }
 

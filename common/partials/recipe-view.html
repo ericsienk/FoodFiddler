@@ -8,6 +8,44 @@
     .back-pink {  background: #E2C7D2;  }
     .font-pink {  color : #E2C7D2;  }
 
+    .item-icon {
+        font-size: 42px;
+        margin-left: -18px;
+    }
+
+    .fab {
+        height: 15px;
+        width: 15px;
+        margin-left: -7px;
+        margin-top: -7px;
+        color: white;
+        display: none;
+    }
+
+    .fab:focus { outline:0 !important; }
+
+    @media (max-width: 991px) {
+        .fab {
+            display: inline-block;
+        }
+
+        .item-wrapper {
+            position: absolute;
+            z-index: 999;
+        }
+
+        .item-button {
+            height: 10px;
+            width: 10px;
+            border-radius: 50% !important;
+            color: rgba(0,0,0,0) !important;
+            margin-top: -3px !important;
+            margin: -4px !important;
+            position: fixed;
+            box-shadow: 0px 1px 4px #ccc;
+        }
+    }
+
     .recipe-jumbotron {
         text-align: center;
         text-transform: uppercase;
@@ -16,8 +54,8 @@
         padding-top:32px;
     }
 
-    .marginLeftRight15Percent {
-        margin: 0 15%;
+    .marginLeftRight10Percent {
+        margin: 0 10%;
     }
 
     .margin0px {
@@ -28,17 +66,17 @@
         text-align: right;
     }
 
-    .bold {
+    .bold, .desc-text, .sub-text {
         font-weight:bold;
     }
 
     .desc-text {
-        font-size: 12px;
+        font-size: 11px;
+        letter-spacing: 2px;
     }
 
     .sub-text {
         color: #cfcfd0;
-        font-weight: bold;
     }
 
     .item-container {
@@ -46,6 +84,7 @@
         margin: 18px;
         padding: 18px;
         color: white;
+        transition: border-radius .35s, height .35s, width .35s, position .35s, margin .35s, color 0s;
     }
 
     .instruction-container {
@@ -57,10 +96,12 @@
         box-shadow: 0 0 6px 0 #aaa;
         border-radius: 2px;
         background-color:white;
+        max-width: 945px;
     }
 
     .info-icon {
-        font-size : 80px;
+        font-size : 64px;
+        margin-bottom: 6px;
     }
 </style>
 
@@ -69,7 +110,7 @@
         <h2 class="bold">{{recipe.title}}</h2>
     </div>
     <div class="recipe-jumbotron">
-        <div class="marginLeftRight15Percent">
+        <div class="marginLeftRight10Percent">
             <div class="row">
                 <div class="col-xs-3">
                     <div class="icon-MIT info-icon {{ 'font-' + recipe.color }}"></div>
@@ -77,14 +118,17 @@
                     <div class="sub-text">{{recipe.method}}</div>
                 </div>
                 <div class="col-xs-3">
+                    <div class="icon-UTIL info-icon {{ 'font-' + recipe.color }}"></div>
                     <div class="desc-text">PREP</div>
                     <div class="sub-text">{{recipe.prep}}</div>
                 </div>
                 <div class="col-xs-3">
+                    <div class="icon-CLOCK info-icon {{ 'font-' + recipe.color }}"></div>
                     <div class="desc-text">MINUTES</div>
                     <div class="sub-text">{{recipe.minutes}}</div>
                 </div>
                 <div class="col-xs-3">
+                    <div class="icon-SERVE info-icon {{ 'font-' + recipe.color }}"></div>
                     <div class="desc-text">SERVES</div>
                     <div class="sub-text">{{recipe.serves}}</div>
                 </div>
@@ -92,20 +136,21 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
-            <div class="item-container {{'back-' + recipe.color }}">
+        <div class="col-md-4 item-wrapper">
+            <div class="item-container {{'back-' + recipe.color }}"  data-ng-class="{'item-button' : fab}">
+                <span class="fab glyphicon glyphicon-menu-hamburger" data-ng-click="toggleFAB()"></span>
                 <div class="row" data-ng-repeat="i in recipe.ingredients">
                     <div class="col-xs-8 textAlignRight">
                         <p class="margin0px bold">{{i.amount}}</p>
                         <p>{{i.name}}</p>
                     </div>
                     <div class="col-xs-4">
-                        <span>icon</span>
+                        <span class="{{'icon-' + i.ingredientTag}} item-icon"></span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="instruction-container bold">
                 <div ng-bind-html="recipe.instructions"></div>
             </div>

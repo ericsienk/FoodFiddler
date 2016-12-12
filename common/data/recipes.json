@@ -21,17 +21,17 @@
       {
         "amount" : "1 teaspoon",
         "name" : "baking powder",
-        "ingredientTag" : "BAKEPWDR"
+        "ingredientTag" : "SPOON"
       },
       {
         "amount" : "1/2 teaspoon",
         "name" : "baking soda",
-        "ingredientTag" : "BAKESODA"
+        "ingredientTag" : "SPOON"
       },
       {
         "amount" : "1/2 teaspoon",
         "name" : "salt",
-        "ingredientTag" : "SALT"
+        "ingredientTag" : "SPOON"
       },
       {
         "amount" : "1",
@@ -41,7 +41,7 @@
       {
         "amount" : "1/2 cup",
         "name" : "milk",
-        "ingredientTag" : "MILK"
+        "ingredientTag" : "COW"
       },
       {
         "amount" : "1 teaspoon",
@@ -61,7 +61,7 @@
       {
         "amount" : "1 cup",
         "name" : "mini semi-sweet chocolate chips",
-        "ingredientTag" : "CHOCHIPS"
+        "ingredientTag" : "KISS"
       }
     ],
     "color" : "yellow",
