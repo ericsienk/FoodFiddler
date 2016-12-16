@@ -8,7 +8,8 @@
         'foodfiddler.ff-filters',
         'foodfiddler.service.recipes',
         'foodfiddler.directive.recipeView',
-        'foodfiddler.home'
+        'foodfiddler.home',
+        'foodfiddler.recipe'
     ];
     var foodfiddler = angular.module('foodfiddler', appDependencies);
 
@@ -21,8 +22,19 @@
         }
     ]);
 
-    foodfiddler.controller('FoodFiddlerCtrl', ['$scope', '$rootScope',
-        function($scope, $rootScope) {
+    foodfiddler.controller('FoodFiddlerCtrl', ['$scope', '$rootScope','ffRecipeService', '$route',
+        function($scope, $rootScope,ffRecipeService, $route) {
             console.log("nav loaded");
+            ffRecipeService.getRecipes().then(function(data){
+                ffRecipeService.setRecipes(data.data);
+            }, function(error) {});
+
+            var destroyWatch = $scope.$watch(function() {
+                return $route.current;
+            },function(newValue,oldValue) {
+                $scope.currentNavItem = $route.current.$$route.currentNavItem;
+                destroyWatch();
+            });
+
         }]);
 }(window.angular));

@@ -9,20 +9,30 @@
     <link href="common/data/fonts/style.css" rel="stylesheet">
 </head>
 <style>
-    body {
+    body, .body-content {
         font-family: 'Quicksand', sans-serif;
         color:#6C6D70;
         background: url('https://subtlepatterns.com/patterns/asanoha-400px.png');
     }
 
-    html, body {
+    html, body, .body-content {
         overflow: auto;
     }
 </style>
 
+<md-content>
+    <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+        <md-nav-item md-nav-href="#/home" name="home">Home</md-nav-item>
+        <md-nav-item md-nav-href="#/recipe/1" name="recipe">Recipes</md-nav-item>
+    </md-nav-bar>
+    <div class="body-content">
+        <div ng-view></div>
+    </div>
+</md-content>
+
+
 <body ng-cloak>
 
-<div ng-view></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <!-- Angular Material requires Angular.js Libraries -->
@@ -45,6 +55,7 @@
 <script src="common/services/recipes.service.js"></script>
 <script src="common/directives/recipe-view.directive.js"></script>
 <script src="home/home.controller.js"></script>
+<script src="recipes/recipe.controller.js"></script>
 
 </body>
 </html>

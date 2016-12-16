@@ -24,28 +24,6 @@
 
     .fab:focus { outline:0 !important; }
 
-    @media (max-width: 991px) {
-        .fab {
-            display: inline-block;
-        }
-
-        .item-wrapper {
-            position: absolute;
-            z-index: 999;
-        }
-
-        .item-button {
-            height: 10px;
-            width: 10px;
-            border-radius: 50% !important;
-            color: rgba(0,0,0,0) !important;
-            margin-top: -3px !important;
-            margin: -4px !important;
-            position: fixed;
-            box-shadow: 0px 1px 4px #ccc;
-        }
-    }
-
     .recipe-jumbotron {
         text-align: center;
         text-transform: uppercase;
@@ -84,7 +62,7 @@
         margin: 18px;
         padding: 18px;
         color: white;
-        transition: border-radius .35s, height .35s, width .35s, position .35s, margin .35s, color 0s;
+        transition: border-radius .35s,margin .5s;
     }
 
     .instruction-container {
@@ -97,11 +75,45 @@
         border-radius: 2px;
         background-color:white;
         max-width: 945px;
+        margin: 18px auto 18px auto;
     }
 
     .info-icon {
         font-size : 64px;
         margin-bottom: 6px;
+    }
+
+    @media (max-width: 991px) {
+        .recipe-container{
+            margin: 0 auto 0 auto;
+        }
+
+        .page {
+            height: 120%;
+        }
+
+        .fab {
+            display: inline-block;
+        }
+
+        .item-wrapper {
+            position: absolute;
+            z-index: 999;
+        }
+
+        .item-button {
+            height: 10px;
+            width: 10px;
+            border-radius: 50% !important;
+            color: rgba(0,0,0,0) !important;
+            margin: -4px !important;
+            position: fixed;
+            box-shadow: 0px 1px 4px #ccc;
+        }
+
+        .item-container {
+            box-shadow: 0px 4px 6px 1px #aaa;
+        }
     }
 </style>
 
@@ -135,10 +147,10 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row page">
         <div class="col-md-4 item-wrapper">
             <div class="item-container {{'back-' + recipe.color }}"  data-ng-class="{'item-button' : fab}">
-                <span class="fab glyphicon glyphicon-menu-hamburger" data-ng-click="toggleFAB()"></span>
+                <span class="fab glyphicon" data-ng-class="{'glyphicon-menu-hamburger' : fab, 'glyphicon-remove' : !fab }" data-ng-click="toggleFAB()"></span>
                 <div class="row" data-ng-repeat="i in recipe.ingredients">
                     <div class="col-xs-8 textAlignRight">
                         <p class="margin0px bold">{{i.amount}}</p>
