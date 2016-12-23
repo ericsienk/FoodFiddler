@@ -1,0 +1,52 @@
+<div data-ng-if="recipe" class="container recipe-container">
+    <div class="recipe-jumbotron">
+        <h2 class="bold">{{::recipe.title}}</h2>
+    </div>
+    <div class="recipe-jumbotron">
+        <div class="marginLeftRight10Percent">
+            <div class="row">
+                <div class="col-xs-3">
+                    <div class="icon-MIT info-icon {{ ::('font-' + recipe.color) }}"></div>
+                    <div class="desc-text">METHOD</div>
+                    <div class="sub-text">{{::recipe.method}}</div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="icon-UTIL info-icon {{ ::('font-' + recipe.color) }}"></div>
+                    <div class="desc-text">PREP</div>
+                    <div class="sub-text">{{::recipe.prep}}</div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="icon-CLOCK info-icon {{ ::('font-' + recipe.color) }}"></div>
+                    <div class="desc-text">MINUTES</div>
+                    <div class="sub-text">{{::recipe.minutes}}</div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="icon-SERVE info-icon {{ ::('font-' + recipe.color) }}"></div>
+                    <div class="desc-text">SERVES</div>
+                    <div class="sub-text">{{::recipe.serves}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row page">
+        <div class="col-md-4 item-wrapper">
+            <div class="item-container {{ ::('back-' + recipe.color) }}"  data-ng-class="{'item-button' : fab}">
+                <span class="fab glyphicon" data-ng-class="{'glyphicon-menu-hamburger' : fab, 'glyphicon-remove' : !fab }" data-ng-click="toggleFAB()"></span>
+                <div class="row" data-ng-repeat="i in ::recipe.ingredients">
+                    <div class="col-xs-8 textAlignRight">
+                        <p class="margin0px bold">{{i.amount}}</p>
+                        <p>{{i.name}}</p>
+                    </div>
+                    <div class="col-xs-4">
+                        <span class="{{::('icon-' + i.ingredientTag)}} item-icon"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="instruction-container bold">
+                <div ng-bind-html="recipe.instructions"></div>
+            </div>
+        </div>
+    </div>
+</div>

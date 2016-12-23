@@ -1,0 +1,164 @@
+<form name="frmRecipeMaker" ng-submit="submitRecipe()" class="container recipe-container">
+    <div class="recipe-jumbotron">
+        <div class="textAlignLeft">
+            <ul class="list-inline">
+                <li class="back-green color-select" data-ng-click="selectColor('green')" data-ng-class="{selected : colors['green']}">Green</li>
+                <li class="back-yellow color-select" data-ng-click="selectColor('yellow')" data-ng-class="{selected : colors['yellow']}">Yellow</li>
+                <li class="back-pink color-select" data-ng-click="selectColor('pink')" data-ng-class="{selected : colors['pink']}">Pink</li>
+                <li class="back-purple color-select" data-ng-click="selectColor('purple')" data-ng-class="{selected : colors['purple']}">Purple</li>
+            </ul>
+        </div>
+        <div class="textAlignLeft">
+            <md-input-container style="width:100%; font-size: large">
+                <label>RECIPE NAME</label>
+                <input ng-model="recipe.title" required>
+            </md-input-container>
+        </div>
+    </div>
+    <div class="recipe-jumbotron textAlignLeft">
+        <div class="marginLeftRight10Percent">
+            <div class="row">
+                <div class="col-xs-3">
+                    <div class="icon-MIT info-icon {{ 'font-' + recipe.color }}"></div>
+                    <md-input-container>
+                        <label>METHOD</label>
+                        <input ng-model="recipe.method" required>
+                    </md-input-container>
+                </div>
+                <div class="col-xs-3">
+                    <div class="icon-UTIL info-icon {{ 'font-' + recipe.color }}"></div>
+                    <md-input-container>
+                        <label>PREP</label>
+                        <input ng-model="recipe.prep" required>
+                    </md-input-container>
+                </div>
+                <div class="col-xs-3">
+                    <div class="icon-CLOCK info-icon {{ 'font-' + recipe.color }}"></div>
+                    <md-input-container>
+                        <label>MINUTES</label>
+                        <input ng-model="recipe.minutes" required>
+                    </md-input-container>
+                </div>
+                <div class="col-xs-3">
+                    <div class="icon-SERVE info-icon {{ 'font-' + recipe.color }}"></div>
+                    <md-input-container>
+                        <label>SERVES</label>
+                        <input ng-model="recipe.serves" required>
+                    </md-input-container>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div layout="column">
+            <md-content layout-padding>
+                <form name="projectForm">
+                    <div layout="row">
+                        <md-input-container class="width100Percent">
+                            <label>Amount Label</label>
+                            <input class="width100Percent" ng-model="selectedIngredient.amount">
+                        </md-input-container>
+                    </div>
+                    <div layout="row" style="margin-top:-32px">
+                        <md-input-container>
+                            <label>ICON</label>
+                            <md-select name="type" ng-model="selectedIngredient.tagIndex" ng-change="updateIngredientName()">
+                                <md-option ng-repeat="i in ingredients" value="{{$index}}">
+                                    <span class="{{'icon-' + i.tag}} item-icon marginAuto" style="font-size: 25px"></span>
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Name</label>
+                            <input ng-model="selectedIngredient.name">
+                        </md-input-container>
+                    </div>
+                    <md-input-container class="width100Percent">
+                        <md-button style="margin-top:-32px" class="md-raised width100Percent marginAuto"
+                                   data-ng-style="{'background-color' : getPrimaryColor(true)}"
+                                   data-ng-click="addIngredient()">Add Ingredient
+                        </md-button>
+                    </md-input-container>
+                </form>
+            </md-content>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div data-ng-if="recipe.ingredients.length > 0" class="item-container {{'back-' + recipe.color }}"  data-ng-class="{'item-button' : fab}">
+                        <div class="row ingredient" data-ng-repeat="i in recipe.ingredients track by $index">
+                            <div class="col-xs-7 textAlignRight">
+                                <p class="margin0px bold">{{i.amount}}</p>
+                                <p>{{i.name}}</p>
+                            </div>
+                            <div class="col-xs-5">
+                                <div class="col-xs-6">
+                                    <span class="{{'icon-' + i.ingredientTag}} item-icon"></span>
+                                </div>
+                                <div class="col-xs-6">
+                                    <span data-ng-click="deleteIngredient(i)" class="glyphicon glyphicon-remove delete-click"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <md-content layout-padding style="margin-bottom: 18px">
+                <md-input-container class="md-block">
+                    <label>Instructions</label>
+                    <textarea ng-model="recipe.instructions" rows="5" required></textarea>
+                </md-input-container>
+                <md-input-container class="pull-right">
+                    <md-button type="submit" class="md-raised marginAuto" data-ng-style="{'background-color' : getPrimaryColor()}">
+                        Submit
+                    </md-button>
+                </md-input-container>
+            </md-content>
+        </div>
+    </div>
+</form>
+<style>
+    .color-select {
+        padding: 6px;
+        border-radius: 3px;
+        width: 80px;
+        transition:all .35s;
+    }
+
+    .selected {
+        color:white;
+        border-left: 9px solid rgba(100,100,100,.1);
+        font-weight: normal;
+        font-style: italic;
+    }
+
+    .color-select:focus {
+        outline:0;
+    }
+
+    .back- {
+        background: #ccc;
+    }
+    .delete-click {
+        cursor: pointer;
+
+    }
+    .delete-click:hover {
+        color:#aaa;
+    }
+    .delete-click:focus {
+        outline : none;
+    }
+    .width100Percent {
+        width:100%;
+    }
+    .ingredient {
+        animation: fade-in .35s ease both;
+    }
+    @keyframes fade-in {
+        from{opacity: 0}
+        to{opacity: 1}
+    }
+</style>

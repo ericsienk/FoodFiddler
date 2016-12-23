@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link href="common/data/fonts/style.css" rel="stylesheet">
+    <link href="foodfiddler.css" rel="stylesheet"/>
 </head>
 <style>
     body, .body-content {
@@ -22,8 +23,8 @@
 
 <md-content>
     <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-        <md-nav-item md-nav-href="#/home" name="home">Home</md-nav-item>
-        <md-nav-item md-nav-href="#/recipe/1" name="recipe">Recipes</md-nav-item>
+        <md-nav-item md-nav-href="#/home" name="home"><b>Home</b></md-nav-item>
+        <md-nav-item md-nav-href="#/recipe/1" name="recipe"><b>Recipe</b></md-nav-item>
     </md-nav-bar>
     <div class="body-content">
         <div ng-view></div>
@@ -53,10 +54,10 @@
 <script src="common/filters/ff-number.js"></script>
 <script src="common/filters/filters.js"></script>
 <script src="common/services/recipes.service.js"></script>
-<script src="common/directives/recipe-view.directive.js"></script>
+<script src="common/directives/recipe-view/recipe-view.directive.js"></script>
 <script src="home/home.controller.js"></script>
 <script src="recipes/recipe.controller.js"></script>
-
+<script src="common/directives/recipe-maker/recipe-maker.directive.js"></script>
 </body>
 </html>
 

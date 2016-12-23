@@ -8,10 +8,9 @@
                     recipe : '='
                 },
                 replace: true,
-                template: '<div ng-include="\'common/partials/recipe-view.html\'"></div>',
+                template: '<div ng-include="\'common/directives/recipe-view/recipe-view.html\'"></div>',
                 link: function($scope, $element, $attrs) {
-                    console.log("recipe view loaded");
-                    $scope.fab = false;
+                    $scope.fab = true;
 
                     $scope.toggleFAB = function() {
                         if($scope.fab === undefined) {

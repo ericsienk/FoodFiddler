@@ -8,6 +8,7 @@
         'foodfiddler.ff-filters',
         'foodfiddler.service.recipes',
         'foodfiddler.directive.recipeView',
+        'foodfiddler.directive.recipeMaker',
         'foodfiddler.home',
         'foodfiddler.recipe'
     ];
@@ -32,8 +33,10 @@
             var destroyWatch = $scope.$watch(function() {
                 return $route.current;
             },function(newValue,oldValue) {
-                $scope.currentNavItem = $route.current.$$route.currentNavItem;
-                destroyWatch();
+                if($route.current){
+                    $scope.currentNavItem = $route.current.$$route.currentNavItem;
+                    destroyWatch();
+                }
             });
 
         }]);
