@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
     angular.module('foodfiddler.directive.recipeMaker', [])
-        .directive('recipeMaker', ['$log', function($log) {
+        .directive('recipeMaker', ['$log', 'ffRecipeService','$location', function($log, ffRecipeService, $location) {
             return ({
                 restrict: 'AE',
                 scope: {
@@ -91,6 +91,11 @@
 
                     $scope.submitRecipe = function() {
                         console.log($scope.recipe);
+                        ffRecipeService.addRecipe($scope.recipe).then(function(snapshot) {
+                            $scope.$apply(function() {
+                                $location.path('/recipe/' + $scope.recipe.id);
+                            })
+                        });
                     };
                 }
             });

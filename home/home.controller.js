@@ -10,5 +10,5 @@ angular.module('foodfiddler.home', ['ngRoute'])
 
     }])
     .controller('homeCtrl', ['$scope', 'ffRecipeService', function($scope,ffRecipeService) {
-        $scope.recipe = {};
+
 }]);

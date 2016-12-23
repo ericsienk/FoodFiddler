@@ -22,10 +22,25 @@
 </style>
 
 <md-content>
-    <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-        <md-nav-item md-nav-href="#/home" name="home"><b>Home</b></md-nav-item>
-        <md-nav-item md-nav-href="#/recipe/1" name="recipe"><b>Recipe</b></md-nav-item>
-    </md-nav-bar>
+    <div layout="row">
+
+        <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+            <md-nav-item md-nav-href="#/home" name="home"><b>Home</b></md-nav-item>
+            <md-nav-item data-ng-if="isAdmin()" md-nav-href="#/add/" name="recipe"><b>Make a recipe</b></md-nav-item>
+        </md-nav-bar>
+        <md-menu style="border-bottom: 1px solid rgba(0,0,0,0.12); width:100%; text-align:right">
+            <md-button style="width:auto" aria-label="Open phone interactions menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+                {{$root.user.displayName}}
+            </md-button>
+            <md-menu-content width="4">
+                <md-menu-item>
+                    <md-button ng-click="decideAction()">
+                        {{$root.user.loggedIn ? 'Sign out' : 'Login'}}
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+    </div>
     <div class="body-content">
         <div ng-view></div>
     </div>
@@ -33,6 +48,20 @@
 
 
 <body ng-cloak>
+
+
+<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBJkpxrOHdLy77wkshCeYuVSSUVSM-H6xA",
+        authDomain: "foodfiddler.firebaseapp.com",
+        databaseURL: "https://foodfiddler.firebaseio.com",
+        storageBucket: "foodfiddler.appspot.com",
+        messagingSenderId: "439145630216"
+    };
+    firebase.initializeApp(config);
+</script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -58,6 +87,7 @@
 <script src="home/home.controller.js"></script>
 <script src="recipes/recipe.controller.js"></script>
 <script src="common/directives/recipe-maker/recipe-maker.directive.js"></script>
+<script src="add/add-recipe.controller.js"></script>
 </body>
 </html>
 
