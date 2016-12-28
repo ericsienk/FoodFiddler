@@ -9,6 +9,7 @@
         'foodfiddler.service.recipes',
         'foodfiddler.directive.recipeView',
         'foodfiddler.directive.recipeMaker',
+        'foodfiddler.directive.recipeList',
         'foodfiddler.home',
         'foodfiddler.recipe',
         'foodfiddler.add'

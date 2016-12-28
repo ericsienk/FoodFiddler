@@ -6,16 +6,30 @@
             var recipes;
 
             var getRecipes = function() {
-                return $http.get('common/data/recipes.json');
+                return firebase.database().ref('foodfiddler/recipes').once('value');
             };
 
             var setRecipes = function(r) {
                 recipes = r;
             };
 
+            var firebaseObjToArray = function(r) {
+                var tmpRecipes = [];
+                angular.forEach(r, function(value, key) {
+                    var tmp = r[key];
+                    tmp['id'] = key;
+                    tmpRecipes.push(tmp);
+                });
+                return tmpRecipes;
+            };
+
             var getRecipeById = function(id, recipe) {
                 var userId = firebase.auth().currentUser.uid;
                 return firebase.database().ref('/foodfiddler/recipes/' + id).once('value');
+            };
+
+            var getRecipeList = function() {
+                return recipes;
             };
 
             var addRecipe = function(recipe) {
@@ -28,9 +42,11 @@
 
             return {
                 getRecipes : getRecipes,
+                getRecipeList : getRecipeList,
                 setRecipes : setRecipes,
                 getRecipeById : getRecipeById,
-                addRecipe : addRecipe
+                addRecipe : addRecipe,
+                firebaseObjToArray : firebaseObjToArray
             };
         }]);
 } (angular));
