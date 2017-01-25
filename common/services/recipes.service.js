@@ -24,7 +24,6 @@
             };
 
             var getRecipeById = function(id, recipe) {
-                var userId = firebase.auth().currentUser.uid;
                 return firebase.database().ref('/foodfiddler/recipes/' + id).once('value');
             };
 
