@@ -40,12 +40,10 @@
                     if($rootScope.user.admin === undefined) {
                         firebase.database().ref("/logger").set({date: new Date()}).then(function(snapshot) {
                             $scope.$apply(function() {
-                                console.log('is admin.');
                                 $rootScope.user.admin = true;
                             });
                         }, function(error) {
                             $scope.$apply(function() {
-                                console.log('not admin');
                                 $rootScope.user.admin = false;
                             });
                         });
@@ -79,8 +77,6 @@
                         return false
                     }
                 }
-                console.log($rootScope.user);
-
             };
 
             isLoggedIn();
