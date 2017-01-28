@@ -5,7 +5,8 @@
             return ({
                 restrict: 'AE',
                 scope: {
-                    recipe : '='
+                    recipe : '=',
+                    isEdit : '='
                 },
                 replace: true,
                 template: '<div ng-include="\'common/directives/recipe-maker/recipe-maker.html\'"></div>',
@@ -24,7 +25,11 @@
                         yellow : '#EDBC5E',
                         pink : '#E2C7D2'
                     };
-                    $scope.recipe = {ingredients : [], color: 'green'};
+                    if(!$scope.recipe || !$scope.recipe.id) {
+                        $scope.recipe = {ingredients : [], color: 'green'};
+                    } else if(!$scope.recipe.ingredients) {
+                        $scope.recipe.ingredients = [];
+                    }
                     $scope.selectedIngredient = {};
                     $scope.ingredients = [
                         { name: 'sugar', tag: 'SUGAR'},
@@ -91,11 +96,19 @@
 
                     $scope.submitRecipe = function() {
                         console.log($scope.recipe);
-                        ffRecipeService.addRecipe($scope.recipe).then(function(snapshot) {
-                            $scope.$apply(function() {
-                                $location.path('/recipe/' + $scope.recipe.id);
-                            })
-                        });
+                        if($scope.isEdit) {
+                            ffRecipeService.updateRecipe($scope.recipe).then(function(snapshot) {
+                                $scope.$apply(function() {
+                                    $location.path('/recipe/' + $scope.recipe.id);
+                                })
+                            });
+                        } else {
+                            ffRecipeService.addRecipe($scope.recipe).then(function(snapshot) {
+                                $scope.$apply(function() {
+                                    $location.path('/recipe/' + $scope.recipe.id);
+                                })
+                            });
+                        }
                     };
                 }
             });

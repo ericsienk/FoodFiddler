@@ -39,12 +39,17 @@
                 return firebase.database().ref().update(updates);
             };
 
+            var updateRecipe = function(recipe) {
+                return firebase.database().ref('foodfiddler/recipes/' + recipe.id).set(recipe);
+            };
+
             return {
                 getRecipes : getRecipes,
                 getRecipeList : getRecipeList,
                 setRecipes : setRecipes,
                 getRecipeById : getRecipeById,
                 addRecipe : addRecipe,
+                updateRecipe : updateRecipe,
                 firebaseObjToArray : firebaseObjToArray
             };
         }]);

@@ -1,1 +1,2 @@
-<recipe-maker recipe="recipe"></recipe-maker>
+<recipe-maker data-ng-if="recipe" recipe="recipe" is-edit="isEdit"></recipe-maker>
+<span data-ng-if="checkAdmin()"></span>

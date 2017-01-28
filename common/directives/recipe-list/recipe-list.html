@@ -9,12 +9,39 @@
                   md-colspan-sm="1"
                   md-colspan-xs="1"
                   data-ng-click="viewRecipe(recipe)"
-                  class="clickable"
+                  md-ink-ripple=""
+                  class="md-clickable"
                   ng-class="'back-' + recipe.color">
-        <md-grid-tile-footer><h3>{{recipe.title}}</h3></md-grid-tile-footer>
+        <md-grid-tile-footer class="caption">
+            <div class="width100Percent">
+                <span>{{recipe.title}}</span>
+                <div md-ink-ripple="" class="caption-edit pull-right md-clickable clickable"
+                     data-ng-if="authorizedFunction()"
+                     data-ng-click="editRecipe(recipe); $event.stopPropagation()">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </div>
+            </div>
+        </md-grid-tile-footer>
     </md-grid-tile>
 </md-grid-list>
-
 <style>
+    .caption figcaption {
+        width:100%;
+        padding:9px;
+    }
 
+    .caption-edit {
+        position: relative;
+        padding:6px;
+        z-index: 9999;
+        border-radius:3px;
+    }
+
+    .caption-edit:hover {
+        background: rgba(255,255,255, .3);
+    }
+
+    .caption-edit:focus {
+        outline: none;
+    }
 </style>

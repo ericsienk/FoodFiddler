@@ -9,7 +9,7 @@ angular.module('foodfiddler.home', ['ngRoute'])
         });
 
     }])
-    .controller('homeCtrl', ['$scope', 'ffRecipeService','$http', function($scope,ffRecipeService, $http) {
+    .controller('homeCtrl', ['$scope', '$rootScope', 'ffRecipeService','$http', function($scope, $rootScope, ffRecipeService, $http) {
         if(!ffRecipeService.getRecipeList()) {
             ffRecipeService.getRecipes().then(function (data) {
                 $scope.$apply(function () {

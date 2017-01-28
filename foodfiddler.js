@@ -35,6 +35,10 @@
                 $mdOpenMenu(ev);
             };
 
+            $rootScope.authorized = function() {
+                return $scope.isAdmin();
+            };
+
             $scope.isAdmin = function() {
                 if($rootScope.user && $rootScope.user.loggedIn) {
                     if($rootScope.user.admin === undefined) {
