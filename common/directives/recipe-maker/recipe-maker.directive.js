@@ -33,9 +33,12 @@
                     $scope.selectedIngredient = {};
                     $scope.ingredients = [
                         { name: 'sugar', tag: 'SUGAR'},
+                        { name: 'banana', tag: 'BANANA'},
                         { name: 'brown sugar', tag: 'BROWN_SUG'},
+                        { name: 'cocoa', tag: 'COCOA'},
                         { name: 'butter', tag: 'BUTTER'},
                         { name: 'milk', tag: 'COW'},
+                        { name: 'cream cheese', tag: 'CREAM_CH'},
                         { name: 'heavy cream', tag: 'COW_F'},
                         { name: 'egg(s)', tag: 'EGG'},
                         { name: 'egg white(s)', tag: 'EGG_W'},
@@ -47,6 +50,9 @@
                         { name: 'pretzels', tag: 'PRETZEL'},
                         { name: 'pudding', tag: 'PUDDING'},
                         { name: 'pumpkin', tag: 'PUMPKIN'},
+                        { name: 'ribs', tag: 'RIBS'},
+                        { name: 'sauce', tag: 'SAUCE'},
+                        { name: 'sour cream', tag: 'SOUR_CRM'},
                         { name: 'shortening', tag: 'SHORT'},
                         { name: '', tag: 'SPOON'},
                         { name: 'vanilla extract', tag: 'VANILLA'},
@@ -60,6 +66,24 @@
                                     amount: $scope.selectedIngredient.amount,
                                     ingredientTag: $scope.ingredients[Number($scope.selectedIngredient.tagIndex)].tag
                                 });
+                        }
+                    };
+
+                    $scope.moveIngredientUp = function(index) {
+                        if(index > 0) {
+                            var tmpA = angular.copy($scope.recipe.ingredients[index - 1]);
+                            var tmpB = angular.copy($scope.recipe.ingredients[index]);
+                            $scope.recipe.ingredients[index - 1] = tmpB;
+                            $scope.recipe.ingredients[index] = tmpA;
+                        }
+                    };
+
+                    $scope.moveIngredientDown = function(index) {
+                        if(index < $scope.recipe.ingredients.length - 1) {
+                            var tmpA = angular.copy($scope.recipe.ingredients[index + 1]);
+                            var tmpB = angular.copy($scope.recipe.ingredients[index]);
+                            $scope.recipe.ingredients[index + 1] = tmpB;
+                            $scope.recipe.ingredients[index] = tmpA;
                         }
                     };
 

@@ -10,6 +10,12 @@
         </div>
         <div class="textAlignLeft">
             <md-input-container style="width:100%; font-size: large">
+                <label>IMAGE URL</label>
+                <input ng-model="recipe.url">
+            </md-input-container>
+        </div>
+        <div class="textAlignLeft">
+            <md-input-container style="width:100%; font-size: large">
                 <label>RECIPE NAME</label>
                 <input ng-model="recipe.title" required>
             </md-input-container>
@@ -87,7 +93,11 @@
                 <div class="col-md-12">
                     <div data-ng-if="recipe.ingredients.length > 0" class="item-container {{'back-' + recipe.color }}"  data-ng-class="{'item-button' : fab}">
                         <div class="row ingredient" data-ng-repeat="i in recipe.ingredients track by $index">
-                            <div class="col-xs-7 textAlignRight">
+                            <div class="col-xs-2">
+                                <div class="glyphicon glyphicon-triangle-top clicker" data-ng-click="moveIngredientUp($index)"></div>
+                                <div class="glyphicon glyphicon-triangle-bottom clicker" data-ng-click="moveIngredientDown($index)"></div>
+                            </div>
+                            <div class="col-xs-5 textAlignRight">
                                 <p class="margin0px bold">{{i.amount}}</p>
                                 <p>{{i.name}}</p>
                             </div>
@@ -160,5 +170,18 @@
     @keyframes fade-in {
         from{opacity: 0}
         to{opacity: 1}
+    }
+
+    .clicker {
+        cursor: pointer;
+        transition: all .35s ease;
+    }
+
+    .clicker:focus {
+        outline:none;
+    }
+
+    .clicker:hover {
+        color: #6C6D70;
     }
 </style>

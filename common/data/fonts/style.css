@@ -24,19 +24,19 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-UTIL:before {
+.icon-BANANA:before {
   content: "\e900";
 }
-.icon-SUGAR:before {
+.icon-BROWN_SUG:before {
   content: "\e901";
 }
-.icon-BROWN_SUG:before {
+.icon-BUTTER:before {
   content: "\e902";
 }
-.icon-BUTTER:before {
+.icon-CLOCK:before {
   content: "\e903";
 }
-.icon-CLOCK:before {
+.icon-COCOA:before {
   content: "\e904";
 }
 .icon-COW:before {
@@ -45,58 +45,76 @@
 .icon-COW_F:before {
   content: "\e907";
 }
-.icon-EGG:before {
+.icon-CREAM_CH:before {
   content: "\e908";
 }
-.icon-EGG_W:before {
+.icon-EGG:before {
   content: "\e909";
 }
-.icon-FLOUR:before {
+.icon-EGG_W:before {
   content: "\e90a";
 }
-.icon-KISS:before {
+.icon-FLOUR:before {
   content: "\e90b";
 }
-.icon-MARG:before {
+.icon-KISS:before {
   content: "\e90c";
 }
-.icon-MIT:before {
+.icon-MARG:before {
   content: "\e90d";
 }
-.icon-PEANUT:before {
+.icon-MIT:before {
   content: "\e90e";
 }
-.icon-PIE_SHELL:before {
+.icon-PEANUT:before {
   content: "\e90f";
 }
-.icon-POW_SUGAR:before {
+.icon-PIE_SHELL:before {
   content: "\e910";
 }
-.icon-PRETZEL:before {
+.icon-POW_SUGAR:before {
   content: "\e911";
 }
-.icon-PUDDING:before {
+.icon-PRETZEL:before {
   content: "\e912";
 }
-.icon-PUMPKIN:before {
+.icon-PUDDING:before {
   content: "\e913";
 }
-.icon-SERVE:before {
+.icon-PUMPKIN:before {
   content: "\e914";
 }
-.icon-SHORT:before {
+.icon-RIBS:before {
   content: "\e915";
 }
-.icon-SOUR_CRM:before {
+.icon-SAUCE:before {
   content: "\e916";
 }
-.icon-SPOON:before {
+.icon-SERVE:before {
   content: "\e917";
 }
-.icon-VANILLA:before {
+.icon-SHORT:before {
   content: "\e918";
 }
-.icon-VEG_OIL:before {
+.icon-SOUR_CRM:before {
   content: "\e919";
+}
+.icon-SPOON:before {
+  content: "\e91a";
+}
+.icon-SUGAR:before {
+  content: "\e91b";
+}
+.icon-UTIL:before {
+  content: "\e91c";
+}
+.icon-VANILLA:before {
+  content: "\e91d";
+}
+.icon-VEG_OIL:before {
+  content: "\e91e";
+}
+.icon-COCOA2:before {
+  content: "\e905";
 }
 

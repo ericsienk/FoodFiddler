@@ -12,19 +12,62 @@
                   md-ink-ripple=""
                   class="md-clickable"
                   ng-class="'back-' + recipe.color">
-        <span md-ink-ripple="" class="caption-edit md-clickable clickable"
+        <div class="img-overlay positionAbsolute back-{{recipe.color}}">&nbsp;</div>
+        <div class="img-wrapper">
+            <img class="positionAbsolute" height="100%" src="{{recipe.url}}"/>
+        </div>
+        <span md-ink-ripple="" class="caption-edit md-clickable clickable font-{{recipe.color}}"
               data-ng-if="authorizedFunction()"
               data-ng-click="editRecipe(recipe); $event.stopPropagation()">
             <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit
         </span>
-        <md-grid-tile-footer class="caption">
-            <div class="width100Percent">
-                <span>{{recipe.title}}</span>
+        <md-grid-tile-footer>
+            <div class="width100Percent height100Percent">
+                <span class="caption back-{{recipe.color}}"></span>
+                <span class="caption-text">{{recipe.title}}</span>
             </div>
         </md-grid-tile-footer>
     </md-grid-tile>
 </md-grid-list>
 <style>
+    .img-wrapper {
+        height:100%;
+        width:100%;
+        position: absolute;
+        overflow: hidden;
+    }
+
+    .caption {
+        position: absolute;
+        opacity: .7;
+        z-index: 5;
+        width: 100%;
+        height: 100%;
+    }
+
+    .caption-text {
+        z-index: 66;
+        position: absolute;
+        margin: 9px;
+    }
+
+    .img-overlay {
+        z-index: 99;
+        opacity: 0;
+        height: 100%;
+        width: 100%;
+        transition: all .35s ease;
+        cursor: pointer;
+    }
+
+    .img-overlay:hover {
+        opacity: .5;
+    }
+
+    .positionAbsolute {
+        position: absolute;
+    }
+
     .caption figcaption {
         width:100%;
         padding:9px;
@@ -38,10 +81,13 @@
         left: 30%;
         bottom: 38%;
         border-radius: 3px;
+        background: rgba(255,255,255, .3);
+        transition: all .35s ease;
     }
 
     .caption-edit:hover {
-        background: rgba(255,255,255, .3);
+        background: rgba(255,255,255,.7);
+        color: #6C6D70;
     }
 
     .caption-edit:focus {
