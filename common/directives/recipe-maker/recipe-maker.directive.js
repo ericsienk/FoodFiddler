@@ -34,6 +34,7 @@
                     $scope.ingredients = [
                         { name: 'sugar', tag: 'SUGAR'},
                         { name: 'banana', tag: 'BANANA'},
+                        { name: 'flour', tag: 'FLOUR'},
                         { name: 'brown sugar', tag: 'BROWN_SUG'},
                         { name: 'cocoa', tag: 'COCOA'},
                         { name: 'butter', tag: 'BUTTER'},
