@@ -14,7 +14,7 @@
                   ng-class="'back-' + recipe.color">
         <div class="img-overlay positionAbsolute back-{{recipe.color}}">&nbsp;</div>
         <div class="img-wrapper">
-            <img class="positionAbsolute" height="100%" src="{{recipe.url}}" onerror="this.style.display='none'"/>
+            <img class="positionAbsolute" height="100%" src="{{recipe.url}}" />
         </div>
         <span md-ink-ripple="" class="caption-edit md-clickable clickable font-{{recipe.color}}"
               data-ng-if="authorizedFunction()"
