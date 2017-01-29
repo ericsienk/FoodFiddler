@@ -12,14 +12,14 @@
                   md-ink-ripple=""
                   class="md-clickable"
                   ng-class="'back-' + recipe.color">
+        <span md-ink-ripple="" class="caption-edit md-clickable clickable"
+              data-ng-if="authorizedFunction()"
+              data-ng-click="editRecipe(recipe); $event.stopPropagation()">
+            <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit
+        </span>
         <md-grid-tile-footer class="caption">
             <div class="width100Percent">
                 <span>{{recipe.title}}</span>
-                <div md-ink-ripple="" class="caption-edit pull-right md-clickable clickable"
-                     data-ng-if="authorizedFunction()"
-                     data-ng-click="editRecipe(recipe); $event.stopPropagation()">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                </div>
             </div>
         </md-grid-tile-footer>
     </md-grid-tile>
@@ -32,9 +32,12 @@
 
     .caption-edit {
         position: relative;
-        padding:6px;
+        padding: 5px;
+        margin-right: 9px;
         z-index: 9999;
-        border-radius:3px;
+        left: 30%;
+        bottom: 38%;
+        border-radius: 3px;
     }
 
     .caption-edit:hover {
