@@ -1,8 +1,11 @@
-<div class="container recipe-container height100Percent padding18px">
+<div class="container recipe-container padding18px">
     <div class="row">
         <div class="col-md-12">
-            <h1>Recipes</h1>
-            <recipe-list recipes="recipes" authorized-function="$root.authorized"></recipe-list>
+            <md-input-container style="width:100%; font-size: large">
+                <label>SEARCH RECIPES</label>
+                <input data-ng-model="searchText" />
+            </md-input-container>
+            <recipe-list recipes="recipes" search-text="searchText" authorized-function="$root.authorized"></recipe-list>
         </div>
     </div>
 </div>

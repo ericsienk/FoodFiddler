@@ -3,7 +3,7 @@
         md-row-height-gt-md="1:1" md-row-height="4:3"
         md-gutter="8px" md-gutter-gt-sm="4px" >
 
-    <md-grid-tile ng-repeat="recipe in recipes"
+    <md-grid-tile ng-repeat="recipe in recipes | filter : searchText"
                   md-rowspan="1"
                   md-colspan="1"
                   md-colspan-sm="1"
@@ -14,7 +14,7 @@
                   ng-class="'back-' + recipe.color">
         <div class="img-overlay positionAbsolute back-{{recipe.color}}">&nbsp;</div>
         <div class="img-wrapper">
-            <img class="positionAbsolute" height="100%" src="{{recipe.url}}"/>
+            <img class="positionAbsolute" height="100%" src="{{recipe.url}}" onerror="this.style.display='none'"/>
         </div>
         <span md-ink-ripple="" class="caption-edit md-clickable clickable font-{{recipe.color}}"
               data-ng-if="authorizedFunction()"

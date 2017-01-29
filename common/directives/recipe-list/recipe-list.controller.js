@@ -6,6 +6,7 @@
                 restrict: 'AE',
                 scope: {
                     recipes : '=',
+                    searchText: '=',
                     authorizedFunction : '='
                 },
                 replace: true,
