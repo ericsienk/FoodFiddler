@@ -13,7 +13,7 @@ angular.module('foodfiddler.home', ['ngRoute'])
         if(!ffRecipeService.getRecipeList()) {
             ffRecipeService.getRecipes().then(function (data) {
                 $scope.$apply(function () {
-                    ffRecipeService.setRecipes(ffRecipeService.firebaseObjToArray(data.val()));
+                    ffRecipeService.setRecipesFromObjList(data.val());
                     $scope.recipes = ffRecipeService.getRecipeList();
                 });
             });

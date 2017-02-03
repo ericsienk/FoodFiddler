@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
     angular.module('foodfiddler.directive.recipeMaker', [])
-        .directive('recipeMaker', ['$log', 'ffRecipeService','$location', function($log, ffRecipeService, $location) {
+        .directive('recipeMaker', ['$log', 'ffRecipeService','$location', '$mdDialog', function($log, ffRecipeService, $location, $mdDialog) {
             return ({
                 restrict: 'AE',
                 scope: {
@@ -11,7 +11,7 @@
                 replace: true,
                 template: '<div ng-include="\'common/directives/recipe-maker/recipe-maker.html\'"></div>',
                 link: function($scope, $element, $attrs) {
-                    console.log("recipe view loaded");
+                    $scope.deleteText = 'Delete recipe';
 
                     $scope.colors = {
                         green : true,
@@ -120,20 +120,44 @@
                     };
 
                     $scope.submitRecipe = function() {
-                        console.log($scope.recipe);
                         if($scope.isEdit) {
                             ffRecipeService.updateRecipe($scope.recipe).then(function(snapshot) {
                                 $scope.$apply(function() {
+                                    ffRecipeService.updateCachedRecipe($scope.recipe);
                                     $location.path('/recipe/' + $scope.recipe.id);
                                 })
                             });
                         } else {
                             ffRecipeService.addRecipe($scope.recipe).then(function(snapshot) {
                                 $scope.$apply(function() {
+                                    ffRecipeService.addCachedRecipe($scope.recipe);
                                     $location.path('/recipe/' + $scope.recipe.id);
                                 })
                             });
                         }
+                    };
+
+                    $scope.showConfirm = function(ev) {
+                        // Appending dialog to document.body to cover sidenav in docs app
+                        var confirm = $mdDialog.confirm()
+                            .title('Are you sure you want to DELETE this recipe?')
+                            .textContent('I thought it was a good one.')
+                            .targetEvent(ev)
+                            .ok('Do it!')
+                            .cancel("Don't do it...");
+
+                        $mdDialog.show(confirm).then(function() {
+                            ffRecipeService.deleteRecipe($scope.recipe).then(function(snapshot) {
+                                $scope.$apply(function() {
+                                    ffRecipeService.deleteCachedRecipe($scope.recipe);
+                                    $location.path('/home');
+                                })
+                            }, function(error) {
+                                $scope.deleteText = "I couldn't do it...";
+                            });
+                        }, function() {
+                            $scope.deleteText = 'Close call';
+                        });
                     };
                 }
             });

@@ -28,7 +28,7 @@ angular.module('foodfiddler.add', ['ngRoute'])
                 $scope.$apply(function() {
                     var tmp = snapshot.val();
                     if(tmp.instructions !== undefined) {
-                        tmp.instructions = tmp.instructions.replace(/(\r\n|\n|\r)/gm, "<br />");
+                        tmp.instructions = tmp.instructions.replace("<br />", "\r");
                     }
                     $scope.recipe = tmp;
                     $scope.recipe.id = $routeParams.recipeId;

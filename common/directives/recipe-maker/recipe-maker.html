@@ -120,9 +120,14 @@
                     <label>Instructions</label>
                     <textarea ng-model="recipe.instructions" rows="5" required></textarea>
                 </md-input-container>
+                <md-input-container data-ng-if="::isEdit">
+                    <md-button type="button" class="md-raised md-warn" ng-click="showConfirm($event)">
+                        {{deleteText}}
+                    </md-button>
+                </md-input-container>
                 <md-input-container class="pull-right">
                     <md-button type="submit" class="md-raised marginAuto" data-ng-style="{'background-color' : getPrimaryColor()}">
-                        {{::(isEdit ? 'Save' : 'Submit')}}
+                        {{::(isEdit ? 'Save Recipe' : 'Submit Recipe')}}
                     </md-button>
                 </md-input-container>
             </md-content>
