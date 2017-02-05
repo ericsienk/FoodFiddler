@@ -12,6 +12,8 @@
                 template: '<div ng-include="\'common/directives/recipe-maker/recipe-maker.html\'"></div>',
                 link: function($scope, $element, $attrs) {
                     $scope.deleteText = 'Delete recipe';
+                    $scope.radioFunction = 'move';
+                    $scope.picker = {};
 
                     $scope.colors = {
                         green : true,
@@ -19,17 +21,20 @@
                         yellow : false,
                         pink : false
                     };
+
                     $scope.colorHex = {
                         green : '#CAE0C7',
                         purple : '#CBC7DF',
                         yellow : '#EDBC5E',
                         pink : '#E2C7D2'
                     };
+
                     if(!$scope.recipe || !$scope.recipe.id) {
                         $scope.recipe = {ingredients : [], color: 'green'};
                     } else if(!$scope.recipe.ingredients) {
                         $scope.recipe.ingredients = [];
                     }
+
                     $scope.selectedIngredient = {};
                     $scope.ingredients = [
                         { name: 'sugar', tag: 'SUGAR'},
@@ -62,11 +67,13 @@
 
                     $scope.addIngredient = function() {
                         if($scope.selectedIngredient !== undefined) {
-                            $scope.recipe.ingredients.push({
+                            if($scope.selectedIngredient.amount && $scope.selectedIngredient.name && $scope.selectedIngredient.tagIndex) {
+                                $scope.recipe.ingredients.push({
                                     name: $scope.selectedIngredient.name,
                                     amount: $scope.selectedIngredient.amount,
                                     ingredientTag: $scope.ingredients[Number($scope.selectedIngredient.tagIndex)].tag
                                 });
+                            }
                         }
                     };
 

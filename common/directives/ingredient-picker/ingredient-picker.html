@@ -1,0 +1,76 @@
+<div class="modal fade" id="ingredientPicker" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <md-input-container style="width:100%; font-size: large">
+                    <label>SEARCH INGREDIENTS</label>
+                    <input data-ng-model="searchText" />
+                </md-input-container>
+            </div>
+            <div class="modal-body">
+                <div class="modal-scroller">
+                    <div class="icon-inline" data-ng-repeat="i in ingredients | filter : searchText">
+                        <span data-ng-class="{'item-border' : isSelected(i)}"
+                              data-ng-click="selectIngredient(i)"
+                              class="item {{'icon-' + i.tag}} item-icon marginAuto no-focus"
+                              style="font-size: 60px"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer textAlignLeft">
+                <md-button type="button" class="marginAuto" data-ng-click="controls.cancel()">
+                    CANCEL
+                </md-button>
+                <md-button type="button" class="md-primary md-hue-1 marginAuto pull-right" data-ng-click="controls.choose()">
+                    CHOOSE INGREDIENT
+                </md-button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .icon-inline {
+        position: relative;
+        display: inline-block;
+        padding-left: 20px;
+        margin: 9px;
+        font-weight: 400;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+
+    .textAlignLeft {
+        text-align: left !important;
+    }
+
+    .modal-scroller {
+        max-height: 50%;
+        overflow: auto;
+    }
+
+    .no-focus:focus {
+        outline:none;
+    }
+
+    .item-border {
+        border: 2px solid #6C6D70 !important;
+        border-radius: 8px;
+    }
+
+    .item-border:hover {
+        background: #6C6D70 !important;
+        color : white;
+    }
+
+    .item {
+        border: 2px solid white;
+        border-radius: 8px;
+    }
+    .item:hover {
+        background:rgba(108,109,112, .5);
+
+    }
+</style>

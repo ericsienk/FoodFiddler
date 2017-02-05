@@ -7,6 +7,7 @@
         'ngSanitize',
         'foodfiddler.ff-filters',
         'foodfiddler.service.recipes',
+        'foodfiddler.directive.ingredientPicker',
         'foodfiddler.directive.recipeView',
         'foodfiddler.directive.recipeMaker',
         'foodfiddler.directive.recipeList',
