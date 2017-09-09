@@ -213,7 +213,7 @@ body {
     padding: 9px;
     border-radius: 3px;
     position: absolute;
-    z-index: 99999;
+    z-index: 999;
     transition: all .35s;
 }
 
