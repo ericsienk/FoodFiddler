@@ -9,7 +9,8 @@ module.exports = function (grunt) {
                     open: true,
                     hostname: 'localhost',
                     port : 8080,
-                    base : 'docs/'
+                    base : 'docs/',
+                    livereload : true
                 }
             }
         },
@@ -18,9 +19,7 @@ module.exports = function (grunt) {
                 livereload: true,
                 interval: 5007
             },
-            everything: {
-                files: ['docs/**/*']
-            }
+            files: ['docs/**/*']
         }
     });
     grunt.registerTask('develop', ['connect:server', 'watch']);
