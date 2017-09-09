@@ -5,11 +5,13 @@ angular.module('foodfiddler.edit', ['ngRoute'])
         $routeProvider.when('/add', {
             templateUrl: 'edit/edit-recipe.html',
             controller: 'editCtrl',
-            tabName: 'add'
+            tabName: 'add',
+            editMode: true
         }).when('/:recipeId/edit', {
             templateUrl: 'edit/edit-recipe.html',
             controller: 'editCtrl',
-            tabName: 'home'
+            tabName: 'home',
+            editMode: true
         });
 
     }])

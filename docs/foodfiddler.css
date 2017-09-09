@@ -571,5 +571,9 @@ nav .navbar-brand {
     .container {
         padding: 0;
     }
+
+    nav .nav-item:hover {
+        background: inherit;
+    }
 }
 
