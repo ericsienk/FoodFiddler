@@ -577,3 +577,15 @@ nav .navbar-brand {
     }
 }
 
+.color-select {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    transition: all .35s;
+    margin: auto;
+}
+
+.selected {
+    border: 9px solid rgba(0,0,0,.1);
+}
+
