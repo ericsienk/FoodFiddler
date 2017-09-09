@@ -1,0 +1,8 @@
+<div data-ng-if="!loaders.page" class="row" style="margin: 0">
+    <div class="col-md-12" style="padding: 0">
+        <recipe-list style="margin-left: -4px" recipes="recipes" search-text="$root.searchText" authorized-function="$root.authorized"></recipe-list>
+    </div>
+</div>
+<div data-ng-if="loaders.page">
+    <div class="loading-indicator"></div>
+</div>

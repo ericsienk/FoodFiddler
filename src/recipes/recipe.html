@@ -1,0 +1,62 @@
+<div data-ng-if="!recipe">
+    <div class="loading-indicator"></div>
+</div>
+<div data-ng-if="recipe">
+    <div class="float-btn"
+         data-ng-if="$root.authorized()" data-ng-click="editRecipe()"
+         style="right: 3%;margin-top: 1%;">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit
+    </div>
+    <div style="overflow: hidden">
+        <div class="recipe-jumbotron recipe-image {{ ::('back-' + recipe.color) }}" max="true" options="center / cover no-repeat" imgur-loader="{{recipe.url}}">
+            <h2 class="bold">{{::recipe.title}}</h2>
+        </div>
+    </div>
+    <div class="recipe-jumbotron">
+        <div class="marginLeftRight10Percent">
+            <div class="row">
+                <div class="col-3">
+                    <div class="icon-MIT info-icon {{ ::('font-' + recipe.color) }}"></div>
+                    <div class="desc-text">METHOD</div>
+                    <div class="sub-text">{{::recipe.method}}</div>
+                </div>
+                <div class="col-3">
+                    <div class="icon-UTIL info-icon {{ ::('font-' + recipe.color) }}"></div>
+                    <div class="desc-text">PREP</div>
+                    <div class="sub-text">{{::recipe.prep}}</div>
+                </div>
+                <div class="col-3">
+                    <div class="icon-CLOCK info-icon {{ ::('font-' + recipe.color) }}"></div>
+                    <div class="desc-text">MINUTES</div>
+                    <div class="sub-text">{{::recipe.minutes}}</div>
+                </div>
+                <div class="col-3">
+                    <div class="icon-SERVE info-icon {{ ::('font-' + recipe.color) }}"></div>
+                    <div class="desc-text">SERVES</div>
+                    <div class="sub-text">{{::recipe.serves}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row page" style="margin: 0">
+        <div class="col-md-4 item-wrapper">
+            <div class="item-container {{ ::('back-' + recipe.color) }}"  data-ng-class="{'item-button' : fab}">
+                <i class="fab glyphicon" data-ng-class="{'fa fa-bars' : fab, 'fa fa-times' : !fab }" data-ng-click="toggleFAB()"></i>
+                <div class="row" data-ng-repeat="i in ::recipe.ingredients">
+                    <div class="col-8 textAlignRight">
+                        <p class="margin0px bold">{{i.amount}}</p>
+                        <p>{{i.name}}</p>
+                    </div>
+                    <div class="col-4">
+                        <span class="{{::('icon-' + i.ingredientTag)}} item-icon"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="instruction-container bold">
+                <div style="word-wrap: break-word;" ng-bind-html="recipe.instructions"></div>
+            </div>
+        </div>
+    </div>
+</div>
