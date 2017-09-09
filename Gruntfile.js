@@ -9,7 +9,7 @@ module.exports = function (grunt) {
                     open: true,
                     hostname: 'localhost',
                     port : 8080,
-                    base : 'src/'
+                    base : 'docs/'
                 }
             }
         },
@@ -19,7 +19,7 @@ module.exports = function (grunt) {
                 interval: 5007
             },
             everything: {
-                files: ['src/**/*']
+                files: ['docs/**/*']
             }
         }
     });
