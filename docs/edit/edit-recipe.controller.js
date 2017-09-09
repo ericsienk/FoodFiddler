@@ -167,12 +167,16 @@ angular.module('foodfiddler.edit', ['ngRoute'])
             };
 
             var initialize = function () {
-                //if (!$rootScope.authorized()) {
-                //    $location.path('/home');
-                //}
-
-                getRecipe();
-                getIngredients();
+                if (!$rootScope.authorized()) {
+                    if($routeParams.recipeId) {
+                        $location.path('/recipe/' + $routeParams.recipeId)
+                    } else {
+                        $location.path('/home');
+                    }
+                } else {
+                    getRecipe();
+                    getIngredients();
+                }
             };
 
             initialize();
