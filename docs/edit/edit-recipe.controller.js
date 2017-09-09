@@ -105,7 +105,7 @@ angular.module('foodfiddler.edit', ['ngRoute'])
                 },
                 onResponse: function (data) {
                     ffRecipeService.evaluateCache($scope.recipe, ACTION);
-                    var path = ACTION > 0 ? ('/recipe/' + $scope.recipe.id) : '/home';
+                    var path = ACTION >= 0 ? ('/recipe/' + $scope.recipe.id) : '/home';
                     $location.path(path);
                 },
                 delete: function () {
