@@ -1,0 +1,261 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 22/06/2016 15:37
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("Flaticon.eot");
+  src: url("Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("Flaticon.woff") format("woff"),
+       url("Flaticon.ttf") format("truetype"),
+       url("Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="icon-"]:before, [class*=" icon-"]:before,
+[class^="icon-"]:after, [class*=" icon-"]:after {
+  font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}
+
+.icon-apple:before { content: "\f100"; }
+.icon-apple-1:before { content: "\f101"; }
+.icon-asparagus:before { content: "\f102"; }
+.icon-aubergine:before { content: "\f103"; }
+.icon-avocado:before { content: "\f104"; }
+.icon-bacon:before { content: "\f105"; }
+.icon-baguette:before { content: "\f106"; }
+.icon-banana:before { content: "\f107"; }
+.icon-beans:before { content: "\f108"; }
+.icon-biscuit:before { content: "\f109"; }
+.icon-blueberries:before { content: "\f10a"; }
+.icon-boiled:before { content: "\f10b"; }
+.icon-bowl:before { content: "\f10c"; }
+.icon-bowl-1:before { content: "\f10d"; }
+.icon-bread:before { content: "\f10e"; }
+.icon-bread-1:before { content: "\f10f"; }
+.icon-bread-2:before { content: "\f110"; }
+.icon-broccoli:before { content: "\f111"; }
+.icon-butcher:before { content: "\f112"; }
+.icon-butter:before { content: "\f113"; }
+.icon-cabbage:before { content: "\f114"; }
+.icon-cake:before { content: "\f115"; }
+.icon-can:before { content: "\f116"; }
+.icon-can-1:before { content: "\f117"; }
+.icon-can-2:before { content: "\f118"; }
+.icon-candy:before { content: "\f119"; }
+.icon-candy-1:before { content: "\f11a"; }
+.icon-carrot:before { content: "\f11b"; }
+.icon-cauliflower:before { content: "\f11c"; }
+.icon-cereals:before { content: "\f11d"; }
+.icon-cheese:before { content: "\f11e"; }
+.icon-cheese-1:before { content: "\f11f"; }
+.icon-chef:before { content: "\f120"; }
+.icon-cherries:before { content: "\f121"; }
+.icon-chili:before { content: "\f122"; }
+.icon-chips:before { content: "\f123"; }
+.icon-chives:before { content: "\f124"; }
+.icon-chocolate:before { content: "\f125"; }
+.icon-coconut:before { content: "\f126"; }
+.icon-coffee:before { content: "\f127"; }
+.icon-coffee-1:before { content: "\f128"; }
+.icon-coffee-2:before { content: "\f129"; }
+.icon-coffee-3:before { content: "\f12a"; }
+.icon-coffee-4:before { content: "\f12b"; }
+.icon-coffee-maker:before { content: "\f12c"; }
+.icon-cookies:before { content: "\f12d"; }
+.icon-corckscrew:before { content: "\f12e"; }
+.icon-corn:before { content: "\f12f"; }
+.icon-corndog:before { content: "\f130"; }
+.icon-croissant:before { content: "\f131"; }
+.icon-cucumber:before { content: "\f132"; }
+.icon-cup:before { content: "\f133"; }
+.icon-cupcake:before { content: "\f134"; }
+.icon-cupcake-1:before { content: "\f135"; }
+.icon-cupcake-2:before { content: "\f136"; }
+.icon-cutlery:before { content: "\f137"; }
+.icon-dairy:before { content: "\f138"; }
+.icon-dish:before { content: "\f139"; }
+.icon-dishes:before { content: "\f13a"; }
+.icon-doughnut:before { content: "\f13b"; }
+.icon-doughnut-1:before { content: "\f13c"; }
+.icon-doughnut-2:before { content: "\f13d"; }
+.icon-egg:before { content: "\f13e"; }
+.icon-eggs:before { content: "\f13f"; }
+.icon-fig:before { content: "\f140"; }
+.icon-fish:before { content: "\f141"; }
+.icon-flour:before { content: "\f142"; }
+.icon-flour-1:before { content: "\f143"; }
+.icon-food:before { content: "\f144"; }
+.icon-fork:before { content: "\f145"; }
+.icon-frappe:before { content: "\f146"; }
+.icon-fries:before { content: "\f147"; }
+.icon-garlic:before { content: "\f148"; }
+.icon-gingerbread:before { content: "\f149"; }
+.icon-glass:before { content: "\f14a"; }
+.icon-glass-1:before { content: "\f14b"; }
+.icon-glass-2:before { content: "\f14c"; }
+.icon-glass-3:before { content: "\f14d"; }
+.icon-glass-4:before { content: "\f14e"; }
+.icon-glass-5:before { content: "\f14f"; }
+.icon-glass-6:before { content: "\f150"; }
+.icon-grain:before { content: "\f151"; }
+.icon-grapes:before { content: "\f152"; }
+.icon-grater:before { content: "\f153"; }
+.icon-grinder:before { content: "\f154"; }
+.icon-groceries:before { content: "\f155"; }
+.icon-ham:before { content: "\f156"; }
+.icon-hamburguer:before { content: "\f157"; }
+.icon-hamburguer-1:before { content: "\f158"; }
+.icon-hazelnut:before { content: "\f159"; }
+.icon-honey:before { content: "\f15a"; }
+.icon-honey-1:before { content: "\f15b"; }
+.icon-hot-dog:before { content: "\f15c"; }
+.icon-hot-dog-1:before { content: "\f15d"; }
+.icon-ice-cream:before { content: "\f15e"; }
+.icon-ice-cream-1:before { content: "\f15f"; }
+.icon-ice-cream-10:before { content: "\f160"; }
+.icon-ice-cream-11:before { content: "\f161"; }
+.icon-ice-cream-12:before { content: "\f162"; }
+.icon-ice-cream-13:before { content: "\f163"; }
+.icon-ice-cream-14:before { content: "\f164"; }
+.icon-ice-cream-2:before { content: "\f165"; }
+.icon-ice-cream-3:before { content: "\f166"; }
+.icon-ice-cream-4:before { content: "\f167"; }
+.icon-ice-cream-5:before { content: "\f168"; }
+.icon-ice-cream-6:before { content: "\f169"; }
+.icon-ice-cream-7:before { content: "\f16a"; }
+.icon-ice-cream-8:before { content: "\f16b"; }
+.icon-ice-cream-9:before { content: "\f16c"; }
+.icon-jam:before { content: "\f16d"; }
+.icon-jam-1:before { content: "\f16e"; }
+.icon-jawbreaker:before { content: "\f16f"; }
+.icon-jelly:before { content: "\f170"; }
+.icon-kebab:before { content: "\f171"; }
+.icon-kebab-1:before { content: "\f172"; }
+.icon-kebab-2:before { content: "\f173"; }
+.icon-kitchen:before { content: "\f174"; }
+.icon-knife:before { content: "\f175"; }
+.icon-knife-1:before { content: "\f176"; }
+.icon-knife-2:before { content: "\f177"; }
+.icon-knife-3:before { content: "\f178"; }
+.icon-knives:before { content: "\f179"; }
+.icon-ladle:before { content: "\f17a"; }
+.icon-lemon:before { content: "\f17b"; }
+.icon-lemon-1:before { content: "\f17c"; }
+.icon-lime:before { content: "\f17d"; }
+.icon-meat:before { content: "\f17e"; }
+.icon-meat-1:before { content: "\f17f"; }
+.icon-meat-2:before { content: "\f180"; }
+.icon-milk:before { content: "\f181"; }
+.icon-milk-1:before { content: "\f182"; }
+.icon-mixer:before { content: "\f183"; }
+.icon-mug:before { content: "\f184"; }
+.icon-mushroom:before { content: "\f185"; }
+.icon-mushrooms:before { content: "\f186"; }
+.icon-mustard:before { content: "\f187"; }
+.icon-mustard-1:before { content: "\f188"; }
+.icon-mustard-2:before { content: "\f189"; }
+.icon-noodles:before { content: "\f18a"; }
+.icon-oat:before { content: "\f18b"; }
+.icon-octopus:before { content: "\f18c"; }
+.icon-oil:before { content: "\f18d"; }
+.icon-olives:before { content: "\f18e"; }
+.icon-onion:before { content: "\f18f"; }
+.icon-onion-1:before { content: "\f190"; }
+.icon-orange:before { content: "\f191"; }
+.icon-ornating:before { content: "\f192"; }
+.icon-pan:before { content: "\f193"; }
+.icon-pancakes:before { content: "\f194"; }
+.icon-pancakes-1:before { content: "\f195"; }
+.icon-pasta:before { content: "\f196"; }
+.icon-pasta-1:before { content: "\f197"; }
+.icon-peach:before { content: "\f198"; }
+.icon-pear:before { content: "\f199"; }
+.icon-peas:before { content: "\f19a"; }
+.icon-pepper:before { content: "\f19b"; }
+.icon-pepper-1:before { content: "\f19c"; }
+.icon-pickles:before { content: "\f19d"; }
+.icon-pie:before { content: "\f19e"; }
+.icon-pie-1:before { content: "\f19f"; }
+.icon-pie-2:before { content: "\f1a0"; }
+.icon-pineapple:before { content: "\f1a1"; }
+.icon-pint:before { content: "\f1a2"; }
+.icon-pistachio:before { content: "\f1a3"; }
+.icon-pizza:before { content: "\f1a4"; }
+.icon-pizza-1:before { content: "\f1a5"; }
+.icon-pizza-2:before { content: "\f1a6"; }
+.icon-pizza-3:before { content: "\f1a7"; }
+.icon-pizza-4:before { content: "\f1a8"; }
+.icon-pizza-5:before { content: "\f1a9"; }
+.icon-pomegranate:before { content: "\f1aa"; }
+.icon-popsicle:before { content: "\f1ab"; }
+.icon-pot:before { content: "\f1ac"; }
+.icon-pot-1:before { content: "\f1ad"; }
+.icon-pot-2:before { content: "\f1ae"; }
+.icon-potatoes:before { content: "\f1af"; }
+.icon-potatoes-1:before { content: "\f1b0"; }
+.icon-potatoes-2:before { content: "\f1b1"; }
+.icon-pretzel:before { content: "\f1b2"; }
+.icon-pudding:before { content: "\f1b3"; }
+.icon-pumpkin:before { content: "\f1b4"; }
+.icon-radish:before { content: "\f1b5"; }
+.icon-raspberry:before { content: "\f1b6"; }
+.icon-rice:before { content: "\f1b7"; }
+.icon-risotto:before { content: "\f1b8"; }
+.icon-rolling-pin:before { content: "\f1b9"; }
+.icon-salad:before { content: "\f1ba"; }
+.icon-salad-1:before { content: "\f1bb"; }
+.icon-salami:before { content: "\f1bc"; }
+.icon-salmon:before { content: "\f1bd"; }
+.icon-salt:before { content: "\f1be"; }
+.icon-sandwich:before { content: "\f1bf"; }
+.icon-sandwich-1:before { content: "\f1c0"; }
+.icon-sausage:before { content: "\f1c1"; }
+.icon-scale:before { content: "\f1c2"; }
+.icon-seeds:before { content: "\f1c3"; }
+.icon-shrimp:before { content: "\f1c4"; }
+.icon-slotted-spoon:before { content: "\f1c5"; }
+.icon-sorbet:before { content: "\f1c6"; }
+.icon-spaguetti:before { content: "\f1c7"; }
+.icon-spatula:before { content: "\f1c8"; }
+.icon-spatula-1:before { content: "\f1c9"; }
+.icon-spices:before { content: "\f1ca"; }
+.icon-spoon:before { content: "\f1cb"; }
+.icon-steak:before { content: "\f1cc"; }
+.icon-stew:before { content: "\f1cd"; }
+.icon-stew-1:before { content: "\f1ce"; }
+.icon-strainer:before { content: "\f1cf"; }
+.icon-strawberry:before { content: "\f1d0"; }
+.icon-sushi:before { content: "\f1d1"; }
+.icon-sushi-1:before { content: "\f1d2"; }
+.icon-sushi-2:before { content: "\f1d3"; }
+.icon-taco:before { content: "\f1d4"; }
+.icon-tea:before { content: "\f1d5"; }
+.icon-tea-1:before { content: "\f1d6"; }
+.icon-teapot:before { content: "\f1d7"; }
+.icon-teapot-1:before { content: "\f1d8"; }
+.icon-teaspoon:before { content: "\f1d9"; }
+.icon-tenderizer:before { content: "\f1da"; }
+.icon-thermos:before { content: "\f1db"; }
+.icon-toast:before { content: "\f1dc"; }
+.icon-toaster:before { content: "\f1dd"; }
+.icon-toffee:before { content: "\f1de"; }
+.icon-tomato:before { content: "\f1df"; }
+.icon-turkey:before { content: "\f1e0"; }
+.icon-water:before { content: "\f1e1"; }
+.icon-water-1:before { content: "\f1e2"; }
+.icon-watermelon:before { content: "\f1e3"; }
+.icon-whisk:before { content: "\f1e4"; }
+.icon-wrap:before { content: "\f1e5"; }

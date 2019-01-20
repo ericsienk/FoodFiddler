@@ -28,8 +28,7 @@
         }
     ]);
 
-    foodfiddler.controller('FoodFiddlerCtrl', ['$scope', '$rootScope','ffRecipeService', '$route',
-        function($scope, $rootScope,ffRecipeService, $route) {
+    foodfiddler.controller('FoodFiddlerCtrl', ['$scope', '$rootScope','ffRecipeService', '$route', function($scope, $rootScope,ffRecipeService, $route) {
 
             $scope.isSelected = function(tabName) {
                 return $route.current &&  $route.current.$$route && $route.current.$$route.tabName == tabName;

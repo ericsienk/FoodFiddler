@@ -12,7 +12,7 @@
                 replace: true,
                 template: '<div ng-include="\'common/directives/recipe-list/recipe-list.html\'"></div>',
                 link: function($scope, $element, $attrs) {
-                    $scope.filteredRecipes = $scope.recipes;
+                    //$scope.filteredRecipes = $scope.recipes;
 
                     $scope.viewRecipe = function(recipe) {
                         $location.path('recipe/' + recipe.id);
@@ -22,11 +22,11 @@
                         $location.path(recipe.id + '/edit');
                     };
 
-                    $scope.$watch('searchText', function(newVal, oldVal) {
-                        if(newVal != oldVal) {
-                            $scope.filteredRecipes = $filter('filter')($scope.recipes, newVal);
-                        }
-                    });
+                    //$scope.$watch('searchText', function(newVal, oldVal) {
+                    //    if(newVal != oldVal) {
+                    //        $scope.filteredRecipes = $filter('filter')($scope.recipes, newVal);
+                    //    }
+                    //});
                 }
             });
         }]);

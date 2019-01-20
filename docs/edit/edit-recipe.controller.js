@@ -33,6 +33,29 @@ angular.module('foodfiddler.edit', ['ngRoute'])
                 return util.hasErrorClass(name, $scope.forms[formName], optionalClass);
             };
 
+            $scope.paste = function (ev) {
+                //$scope.handlePastedData($event.originalEvent.clipboardData.getData('text/plain'));
+                var clipboardData = ev.clipboardData || window.clipboardData || ev.originalEvent.clipboardData;
+                var splitIngredientLines = clipboardData.getData('text').split("\n");
+                parseLine(splitIngredientLines);
+            }
+
+            function parseLine(lines) {
+                angular.forEach(lines, function (value, key) {
+                   var ingredientLine=value.match(/^(\S+? \S+?) ([\s\S]+?)$/);
+                        $scope.recipe.ingredients.push({amount : ingredientLine[1],
+                            name : ingredientLine[2],
+                            ingredientTag : ingredientLine[2]
+                        });
+                }
+                );
+                //var ingredientlines = lines.split("(\w+\s*\w+)\s");
+               //$scope.recipe.ingredients.push({amount : ingredientlines[0],
+                //    name : ingredientlines[1],
+                //    ingredientTag : ingredientlines[1]
+               // });
+            }
+
             $scope.ingredientActions = {
                 search:function(searchTerm) {
                     return httpUtil.mockPromise($scope.ingredients);

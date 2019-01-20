@@ -4,8 +4,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link href="common/data/fonts/style.css" rel="stylesheet">
+    <!--<link href="common/data/fonts/flaticon.css" rel="stylesheet">-->
     <link href="foodfiddler.css" rel="stylesheet"/>
 </head>
 <style>
@@ -16,6 +20,7 @@
     }
 </style>
 <body ng-cloak>
+<div>
 <nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded" style="padding: 0;">
     <div class="navbar-collapse" id="navbarSupportedContent">
         <div class="brand-wrapper">
@@ -57,10 +62,12 @@
         </ul>
     </div>
 </nav>
+
 <div class="body-content">
     <div class="container recipe-container padding18px">
-        <div ng-view autoscroll="true"></div>
+            <div ng-view autoscroll="true"></div>
     </div>
+</div>
 </div>
 <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
 <script>

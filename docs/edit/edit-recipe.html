@@ -94,7 +94,15 @@
                                     <i class="fa fa-plus-circle font-white" aria-hidden="true"></i>
                                 </button>
                             </div>
+                            <div class="col-md-12">
+                                <textarea class="form-control form-group width100Percent" name="tbInstructions" ng-model="recipe.ingredientsPaste"
+                                ng-class="hasError('tbInstructions', 'recipe')" ng-paste="paste($event)"
+                                placeholder="Paste Ingredient Info..." rows="5" ></textarea>
+                            </div>
                         </div>
+
+
+
                     </ng-form>
                     <div class="container form-group">
                     <div class="row">

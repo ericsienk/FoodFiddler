@@ -1,5 +1,5 @@
-<ul class="dynamic-grid" angular-grid="filteredRecipes" ag-grid-width="273" ag-gutter-size="30" ag-angular-grid-id="gallery" performant-scroll="true" >
-    <li class="flipwrapper flippable" ng-class="'back-' + recipe.color" ng-repeat="recipe in filteredRecipes" data-ng-click="viewRecipe(recipe)">
+<ul class="dynamic-grid" angular-grid="recipes" ag-grid-width="273" ag-gutter-size="30" ag-angular-grid-id="gallery" performant-scroll="true" >
+    <li class="flipwrapper flippable" ng-class="'back-' + recipe.color" ng-repeat="recipe in recipes" data-ng-click="viewRecipe(recipe)">
         <div class="img" imgur-loader="{{recipe.url}}">
             <p class="caption-text  back-{{recipe.color}}">{{recipe.title}}</p>
         </div>
