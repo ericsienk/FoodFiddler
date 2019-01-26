@@ -231,6 +231,7 @@
     margin: 0 auto 18px auto;
     min-height:100%;
     height: fit-content;
+    background-color: white;
 }
 
 .info-icon {
