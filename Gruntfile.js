@@ -8,7 +8,7 @@ module.exports = function (grunt) {
                 options: {
                     open: true,
                     hostname: 'localhost',
-                    port : 8080,
+                    port : 9080,
                     base : 'docs/',
                     livereload : true
                 }
@@ -20,6 +20,19 @@ module.exports = function (grunt) {
                 interval: 5007
             },
             files: ['docs/**/*']
+        },
+        webfont: {
+            icons: {
+                src: 'icons/*.svg',
+                dest: 'docs/common/data/fonts',
+                options: {
+                    fontFilename:'ff-icons',
+                    templateOptions: {
+                        baseClass: 'ff-icon',
+                        classPrefix: 'icon-'
+                    }
+                }
+            }
         }
     });
     grunt.registerTask('develop', ['connect:server', 'watch']);
