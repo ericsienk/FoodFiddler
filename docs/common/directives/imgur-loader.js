@@ -25,11 +25,9 @@
                                 element[0].style.backgroundSize = 'cover';
                                 element[0].style.filter = '';
                                 element.removeAttr("imgur-loader");
-                                scope.$destroy();
                             }).on('error', function () {
                                 element[0].style.filter = '';
                                 element.removeAttr("imgur-loader");
-                                scope.$destroy();
                             });
 
                             if(!tmpImg[0].complete) {
