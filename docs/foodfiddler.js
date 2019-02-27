@@ -16,6 +16,7 @@
         'foodfiddler.directive.ffIcon',
         'foodfiddler.service.util',
         'foodfiddler.service.httpUtil',
+        'foodfiddler.service.lazyLoaderService',
         'angularGrid'
     ];
     var foodfiddler = angular.module('foodfiddler', appDependencies);

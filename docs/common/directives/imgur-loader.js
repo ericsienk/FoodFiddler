@@ -1,34 +1,48 @@
 (function (angular) {
     'use strict';
     angular.module('foodfiddler.directive.imgurLoader', [])
-        .directive('imgurLoader', function($timeout) {
+        .directive('imgurLoader', function($timeout, lazyLoaderService) {
             return {
                 restrict: 'A',
                 link: function (scope, element, attrs) {
-                    if(attrs.imgurLoader.indexOf("i.imgur.com") > -1) {
+
+                    scope.$on('$destroy', function() {
+                        lazyLoaderService.unsubscribe(element[0], 'imgurLoader');
+                    });
+
+                    lazyLoaderService.subscribe(element[0], 'imgurLoader', function(data) {
+                        lazyLoaderService.unsubscribe(element[0], 'imgurLoader');
+
                         var url = attrs.imgurLoader;
-                        var smallUrl = url.replace(/(.+)(\.\w{3}$)/, "$1s$2");
-                        var largeUrl = attrs.max ? url : url.replace(/(.+)(\.\w{3}$)/, "$1l$2");
 
-                        var tmpImg = angular.element(new Image());
-                        tmpImg.attr('src', url);
-                        tmpImg.on('load', function () {
-                            element[0].style.transition = '.5s filter';
-                            element[0].style.background = 'url("' + largeUrl + '") ' + (attrs.options ? attrs.options : 'no-repeat center top');
-                            element[0].style.backgroundSize = 'cover';
-                            element[0].style.filter = '';
-                            element.removeAttr("imgur-loader");
-                        }).on('error', function () {
-                            element[0].style.filter = '';
-                            element.removeAttr("imgur-loader");
-                        });
+                        function loadImg(url) {
+                            var tmpImg = angular.element(new Image());
+                            tmpImg.attr('src', url);
 
-                        if(!tmpImg[0].complete) {
-                            element[0].style.filter = 'blur(22px)';
-                            element[0].style.background = 'url("' + smallUrl + '") ' + (attrs.options ? attrs.options : 'no-repeat center top');
-                            element[0].style.backgroundSize = 'cover';
+                            tmpImg.on('load', function () {
+                                element[0].style.transition = '.5s filter';
+                                element[0].style.background = 'url("' + url + '") ' + (attrs.options ? attrs.options : 'no-repeat center top');
+                                element[0].style.backgroundSize = 'cover';
+                                element[0].style.filter = '';
+                                element.removeAttr("imgur-loader");
+                                scope.$destroy();
+                            }).on('error', function () {
+                                element[0].style.filter = '';
+                                element.removeAttr("imgur-loader");
+                                scope.$destroy();
+                            });
+
+                            if(!tmpImg[0].complete) {
+                                element[0].style.filter = 'blur(22px)';
+                            }
                         }
-                    }
+
+                        if(attrs.imgurLoader.indexOf("i.imgur.com") > -1) {
+                            loadImg(attrs.max ? url : url.replace(/(.+)(\.\w{3}$)/, "$1l$2"));
+                        } else {
+                            loadImg(url);
+                        }
+                    });
                 }
             };
         });
