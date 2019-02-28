@@ -26,6 +26,7 @@ angular.module('foodfiddler.edit', ['ngRoute'])
             $scope.radioFunction = 'move';
             $scope.picker = {};
             $scope.selectedIngredient = { ingredientTag : 'SPOON'};
+            $scope.recipeUtil = {};
 
             var ACTION;
 
@@ -44,8 +45,8 @@ angular.module('foodfiddler.edit', ['ngRoute'])
                 angular.forEach(lines, function (value, key) {
                    var ingredientLine=value.match(/^(\S+? \S+?) ([\s\S]+?)$/);
                         $scope.recipe.ingredients.push({amount : ingredientLine[1],
-                            name : ingredientLine[2],
-                            ingredientTag : ingredientLine[2]
+                            name : ingredientLine[2].replace(/\n|\r/g, ""),
+                            ingredientTag : ingredientLine[2].replace(/\n|\r/g, "")
                         });
                 }
                 );
