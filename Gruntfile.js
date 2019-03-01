@@ -21,19 +21,12 @@ module.exports = function (grunt) {
             },
             files: ['docs/**/*']
         },
-        webfont: {
-            icons: {
-                src: 'icons/*.svg',
-                dest: 'docs/common/data/fonts',
-                options: {
-                    fontFilename:'ff-icons',
-                    templateOptions: {
-                        baseClass: 'ff-icon',
-                        classPrefix: 'icon-'
-                    }
-                }
+        run: {
+            server: {
+                args: ['./svg2font.js']
             }
         }
     });
     grunt.registerTask('develop', ['connect:server', 'watch']);
+    grunt.registerTask('create icons', ['run']);
 };

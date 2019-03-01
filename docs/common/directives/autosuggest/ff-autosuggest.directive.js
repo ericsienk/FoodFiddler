@@ -56,7 +56,7 @@
                     };
 
                     $scope.blur = function() {
-                        $scope.SHOW = false;
+                       //$scope.SHOW = false;
                         SELECTED_INDEX = -1;
                     };
 

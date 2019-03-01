@@ -73,9 +73,10 @@
                                        data-ng-model="selectedIngredient.amount">
                             </div>
                             <div class="col-sm-2 marginBottom1em">
-                            <span data-ng-click="picker.open(selectedIngredient)"
-                                  class="form-control ingredient-pick {{'icon-' + selectedIngredient.ingredientTag}} clicker highlight">&nbsp;
-                            </span>
+                                <ff-icon class="form-control ingredient-pick clicker highlight"
+                                         data-ng-click="picker.open(selectedIngredient)"
+                                         icon="selectedIngredient.ingredientTag">
+                                </ff-icon>
                             </div>
                             <div class="col-sm-5 marginBottom1em" ng-class="hasError('tbName', 'ingredients', 'has-input-error')">
                                 <ff-autosuggest trigger-length="0" placeholder="Name"
@@ -84,7 +85,8 @@
                                                 required="true"
                                                 on-select="ingredientActions.select(item)"
                                                 on-search="ingredientActions.search(searchTerm)">
-                                    <span class="{{'icon-' + item.tag}}"></span>&nbsp;{{item.name}}
+                                    <ff-icon icon="item.tag" size="small"></ff-icon>&nbsp;
+                                    <div class="displayInlineBlock">{{item.name}}</div>
                                 </ff-autosuggest>
                             </div>
                             <div class="col-sm-2 marginBottom1em">
@@ -115,8 +117,11 @@
                                             <td><input onclick="this.select()" class="subtle-input clicker highlight"
                                                        data-ng-model="i.amount"></td>
                                             <td>
-                                                <span data-ng-click="picker.open(i)"  style="margin-left:0"
-                                                      class="{{'icon-' + i.ingredientTag}} item-icon clicker highlight"></span>
+                                                <ff-icon data-ng-click="picker.open(i)"
+                                                         class="clicker highlight"
+                                                         icon="i.ingredientTag"
+                                                         style="margin-left:0">
+                                                </ff-icon>
                                             </td>
                                             <td><input onclick="this.select()" class="subtle-input clicker highlight"
                                                        data-ng-model="i.name"></td>
