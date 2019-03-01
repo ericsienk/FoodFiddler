@@ -7,21 +7,9 @@
                 replace: true,
                 scope: {
                     icon: '=',
-                    color: "=",
-                    size: '@'
+                    color: "="
                 },
                 template: '<div class="displayInlineBlock icon icon-{{icon}} font-{{color}}"></div>',
-                link: function (scope, element, attrs) {
-                    $timeout(function() {
-                        if(scope.size === 'large') {
-                            element.addClass('info-icon');
-                        } else if(scope.size === 'small') {
-                            element.addClass('small-icon');
-                        } else {
-                            element.addClass('item-icon');
-                        }
-                    });
-                }
             };
         });
 }(angular));
