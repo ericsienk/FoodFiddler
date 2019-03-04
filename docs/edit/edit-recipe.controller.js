@@ -25,56 +25,52 @@ angular.module('foodfiddler.edit', ['ngRoute'])
             $scope.forms = {};
             $scope.radioFunction = 'move';
             $scope.picker = {};
-            $scope.selectedIngredient = { ingredientTag : 'SPOON'};
+            $scope.selectedIngredient = {ingredientTag: 'SPOON'};
             $scope.recipeUtil = {};
 
             var ACTION;
 
-            $scope.hasError = function(name, formName, optionalClass) {
+            $scope.hasError = function (name, formName, optionalClass) {
                 return util.hasErrorClass(name, $scope.forms[formName], optionalClass);
             };
 
             $scope.paste = function (ev) {
-                //$scope.handlePastedData($event.originalEvent.clipboardData.getData('text/plain'));
                 var clipboardData = ev.clipboardData || window.clipboardData || ev.originalEvent.clipboardData;
                 var splitIngredientLines = clipboardData.getData('text').split("\n");
                 parseLine(splitIngredientLines);
-            }
+            };
 
             function parseLine(lines) {
-                angular.forEach(lines, function (value, key) {
-                   var ingredientLine=value.match(/^(\S+? \S+?) ([\s\S]+?)$/);
-                        $scope.recipe.ingredients.push({amount : ingredientLine[1],
-                            name : ingredientLine[2].replace(/\n|\r/g, ""),
-                            ingredientTag : ingredientLine[2].replace(/\n|\r/g, "")
+                angular.forEach(lines, function (value) {
+                        var ingredientLine = value.match(/^(\S+? \S+?) ([\s\S]+?)$/),
+                            name = ingredientLine[2].replace(/\n|\r/g, "");
+                        $scope.recipe.ingredients.push({
+                            amount: ingredientLine[1],
+                            name: name,
+                            ingredientTag: ffRecipeService.guessIngredientIconTag(name)
                         });
-                }
+                    }
                 );
-                //var ingredientlines = lines.split("(\w+\s*\w+)\s");
-               //$scope.recipe.ingredients.push({amount : ingredientlines[0],
-                //    name : ingredientlines[1],
-                //    ingredientTag : ingredientlines[1]
-               // });
             }
 
             $scope.ingredientActions = {
-                search:function(searchTerm) {
+                search: function (searchTerm) {
                     return httpUtil.mockPromise($scope.ingredients);
                 },
-                select : function (item) {
+                select: function (item) {
                     $scope.selectedIngredient.ingredientTag = item.tag;
                     $scope.selectedIngredient.name = item.name;
                 },
                 add: function () {
                     if ($scope.selectedIngredient && $scope.ingredientActions.isValid($scope.selectedIngredient)) {
                         $scope.recipe.ingredients.push({
-                            amount : $scope.selectedIngredient.amount,
-                            name : $scope.selectedIngredient.name,
-                            ingredientTag : $scope.selectedIngredient.ingredientTag
+                            amount: $scope.selectedIngredient.amount,
+                            name: $scope.selectedIngredient.name,
+                            ingredientTag: $scope.selectedIngredient.ingredientTag
                         });
                     }
                 },
-                isValid : function(ingredient) {
+                isValid: function (ingredient) {
                     util.validateForm($scope.forms.ingredients);
                     return ingredient.amount && ingredient.name && ingredient.ingredientTag;
                 },
@@ -97,8 +93,8 @@ angular.module('foodfiddler.edit', ['ngRoute'])
 
             $scope.recipeActions = {
                 submit: function () {
-                    if($scope.recipeActions.isValid($scope.recipe)) {
-                        if($rootScope.authorized()) {
+                    if ($scope.recipeActions.isValid($scope.recipe)) {
+                        if ($rootScope.authorized()) {
                             if ($routeParams.recipeId) {
                                 $scope.recipeActions.save();
                             } else {
@@ -110,16 +106,16 @@ angular.module('foodfiddler.edit', ['ngRoute'])
                         }
                     }
                 },
-                isValid : function(recipe) {
+                isValid: function (recipe) {
                     //TODO enhance feedback
                     util.validateForm($scope.forms.recipe);
 
                     var r = recipe.title &&
-                            recipe.method && recipe.prep && recipe.minutes && recipe.serves &&
-                            recipe.ingredients instanceof  Array &&
-                            recipe.instructions;
-                    if(r) {
-                        for(var i = 0; i < recipe.ingredients.length; i++) {
+                        recipe.method && recipe.prep && recipe.minutes && recipe.serves &&
+                        recipe.ingredients instanceof Array &&
+                        recipe.instructions;
+                    if (r) {
+                        for (var i = 0; i < recipe.ingredients.length; i++) {
                             r = r && $scope.ingredientActions.isValid(recipe.ingredients[i]);
                         }
                         return r;
@@ -151,7 +147,7 @@ angular.module('foodfiddler.edit', ['ngRoute'])
             };
 
             $scope.showChickenMessage = function () {
-                $timeout(function(){
+                $timeout(function () {
                     $('#chickenModal').modal('show');
                 });
             };
@@ -178,7 +174,7 @@ angular.module('foodfiddler.edit', ['ngRoute'])
                     ffRecipeService.getRecipeById($routeParams.recipeId).then(function (response) {
                         var recipe = response.data;
                         recipe.instructions = util.encodeLineBreaks(recipe.instructions);
-                        if(!(recipe.ingredients instanceof Array)) {
+                        if (!(recipe.ingredients instanceof Array)) {
                             recipe.ingredients = [];
                         }
                         $scope.recipe = recipe;
@@ -192,7 +188,7 @@ angular.module('foodfiddler.edit', ['ngRoute'])
 
             var initialize = function () {
                 if (!$rootScope.authorized()) {
-                    if($routeParams.recipeId) {
+                    if ($routeParams.recipeId) {
                         $location.path('/recipe/' + $routeParams.recipeId)
                     } else {
                         $location.path('/home');

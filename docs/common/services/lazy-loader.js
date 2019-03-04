@@ -12,7 +12,6 @@
                     observer: new IntersectionObserver(function (entries) {
                         if(entries[0].isIntersecting) {
                             onVisible(entries[0]);
-                            console.log(entries[0]);
                         }
                     })
                 };
