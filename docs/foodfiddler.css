@@ -1,3 +1,7 @@
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none;
+}
+
 .back-yellow {  background-color: #EDBC5E;  }
 .font-yellow {  color : #EDBC5E;  }
 .back-purple {  background-color: #CBC7DF;  }

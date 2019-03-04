@@ -72,7 +72,14 @@
                     }
                 } else {
                     try {
-                        $rootScope.user = firebase.auth().currentUser;
+                        var cachedUser = null;
+                        for(var item in sessionStorage) {
+                            if(item.indexOf('firebase:authUser') > -1) {
+                                cachedUser = JSON.parse(sessionStorage[item]);
+                                break;
+                            }
+                        }
+                        $rootScope.user = firebase.auth().currentUser || cachedUser;
                         $rootScope.user.loggedIn = true;
                         return ($rootScope.user.displayName !== undefined);
                     } catch (e) {
@@ -88,19 +95,16 @@
 
             var login = function() {
                 var provider = new firebase.auth.GoogleAuthProvider();
-                firebase.auth().signInWithPopup(provider).then(function(result) {
-                    $scope.$apply(function() {
-                        var token = result.credential.accessToken;
-                        var user = result.user;
-                        isLoggedIn(user);
-                    });
-                    // ...
-                }).catch(function(error) {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    var email = error.email;
-                    var credential = error.credential;
-                });
+                firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then(function() {
+                    firebase.auth().signInWithPopup(provider).then(function(result) {
+                        $scope.$apply(function() {
+                            var token = result.credential.accessToken;
+                            var user = result.user;
+                            isLoggedIn(user);
+                        });
+                        // ...
+                    }).catch(function(error) {});
+                }).catch(function(error) {});
             };
 
             var signout = function() {
