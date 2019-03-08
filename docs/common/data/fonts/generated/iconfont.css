@@ -1,8 +1,8 @@
 @font-face {
 	font-family: "iconfont";
-	src: url("iconfont.eot?6ae11834f029b478dffa098223f8ba84?#iefix") format("embedded-opentype"),
-url("iconfont.woff2?6ae11834f029b478dffa098223f8ba84") format("woff2"),
-url("iconfont.woff?6ae11834f029b478dffa098223f8ba84") format("woff");
+	src: url("iconfont.eot?6a3d3e1124e627292461bc05f5a78c28?#iefix") format("embedded-opentype"),
+url("iconfont.woff2?6a3d3e1124e627292461bc05f5a78c28") format("woff2"),
+url("iconfont.woff?6a3d3e1124e627292461bc05f5a78c28") format("woff");
 }
 
 .icon {
@@ -31,81 +31,78 @@ url("iconfont.woff?6ae11834f029b478dffa098223f8ba84") format("woff");
 .icon-COCOA:before {
 	content: "\f105";
 }
-.icon-COCOA2:before {
+.icon-COW_F:before {
 	content: "\f106";
 }
-.icon-COW_F:before {
+.icon-COW:before {
 	content: "\f107";
 }
-.icon-COW:before {
+.icon-CREAM_CH:before {
 	content: "\f108";
 }
-.icon-CREAM_CH:before {
+.icon-EGG_W:before {
 	content: "\f109";
 }
-.icon-EGG_W:before {
+.icon-EGG:before {
 	content: "\f10a";
 }
-.icon-EGG:before {
+.icon-FLOUR:before {
 	content: "\f10b";
 }
-.icon-FLOUR:before {
+.icon-KISS:before {
 	content: "\f10c";
 }
-.icon-KISS:before {
+.icon-MARG:before {
 	content: "\f10d";
 }
-.icon-MARG:before {
+.icon-MIT:before {
 	content: "\f10e";
 }
-.icon-MIT:before {
+.icon-PEANUT:before {
 	content: "\f10f";
 }
-.icon-PEANUT:before {
+.icon-PIE_SHELL:before {
 	content: "\f110";
 }
-.icon-PIE_SHELL:before {
+.icon-POW_SUGAR:before {
 	content: "\f111";
 }
-.icon-POW_SUGAR:before {
+.icon-PRETZEL:before {
 	content: "\f112";
 }
-.icon-PRETZEL:before {
+.icon-PUDDING:before {
 	content: "\f113";
 }
-.icon-PUDDING:before {
+.icon-PUMPKIN:before {
 	content: "\f114";
 }
-.icon-PUMPKIN:before {
+.icon-RIBS:before {
 	content: "\f115";
 }
-.icon-RIBS:before {
+.icon-SAUCE:before {
 	content: "\f116";
 }
-.icon-SAUCE:before {
+.icon-SERVE:before {
 	content: "\f117";
 }
-.icon-SERVE:before {
+.icon-SHORT:before {
 	content: "\f118";
 }
-.icon-SHORT:before {
+.icon-SOUR_CRM:before {
 	content: "\f119";
 }
-.icon-SOUR_CRM:before {
+.icon-SPOON:before {
 	content: "\f11a";
 }
-.icon-SPOON:before {
+.icon-SUGAR:before {
 	content: "\f11b";
 }
-.icon-SUGAR:before {
+.icon-UTIL:before {
 	content: "\f11c";
 }
-.icon-UTIL:before {
+.icon-VANILLA:before {
 	content: "\f11d";
 }
-.icon-VANILLA:before {
-	content: "\f11e";
-}
 .icon-VEG_OIL:before {
-	content: "\f11f";
+	content: "\f11e";
 }

@@ -53,37 +53,7 @@
                 };
 
                 var getIngredients = function () {
-                    //TODO replace with firebase call
-                    ingredients = [
-                        {name: 'sugar', tag: 'SUGAR'},
-                        {name: 'banana', tag: 'BANANA'},
-                        {name: 'flour', tag: 'FLOUR'},
-                        {name: 'brown sugar', tag: 'BROWN_SUG'},
-                        {name: 'cocoa', tag: 'COCOA'},
-                        {name: 'butter', tag: 'BUTTER'},
-                        {name: 'milk', tag: 'COW'},
-                        {name: 'cream cheese', tag: 'CREAM_CH'},
-                        {name: 'heavy cream', tag: 'COW_F'},
-                        {name: 'eggs', tag: 'EGG'},
-                        {name: 'egg whites', tag: 'EGG_W'},
-                        {name: 'mini semi-sweet chocolates', tag: 'KISS'},
-                        {name: 'margarine', tag: 'MARG'},
-                        {name: 'peanut butter', tag: 'PEANUT'},
-                        {name: 'pie shell', tag: 'PIE_SHELL'},
-                        {name: 'powder sugar', tag: 'POW_SUGAR'},
-                        {name: 'pretzels', tag: 'PRETZEL'},
-                        {name: 'pudding', tag: 'PUDDING'},
-                        {name: 'pumpkin', tag: 'PUMPKIN'},
-                        {name: 'ribs', tag: 'RIBS'},
-                        {name: 'sauce', tag: 'SAUCE'},
-                        {name: 'sour cream', tag: 'SOUR_CRM'},
-                        {name: 'shortening', tag: 'SHORT'},
-                        {name: 'spice', tag: 'SPOON'},
-                        {name: 'vanilla extract', tag: 'VANILLA'},
-                        {name: 'vegetable oil', tag: 'VEG_OIL'}
-                    ];
-
-                    return httpUtil.mockPromise(ingredients);
+                    return $http.get('../data/ingredients.json');
                 };
 
                 /**
