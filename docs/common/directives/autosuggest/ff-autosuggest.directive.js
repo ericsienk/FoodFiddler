@@ -14,7 +14,8 @@
                         name: '@', //string : optional - input name
                         searchTerm: '=?', //bound string : optional - input text
                         required: '=?', //bound boolean : optional - ng-required
-                        placeholder: '@' //string : optional - placeholder input text
+                        placeholder: '@', //string : optional - placeholder input text
+                        emptyOnBlur: '@'
                     },
                     transclude: true,
                     replace: false,
@@ -22,7 +23,7 @@
                     link: function($scope, $element, $attrs) {
                         var SELECTED_INDEX = -1,
                             CACHED_INPUT_VALUE,
-                            TRIGGER_LENGTH = (!isNaN($scope.triggerLength) ? parseInt($scope.triggerLength) : 2);
+                            TRIGGER_LENGTH = (!isNaN($scope.triggerLength) ? parseInt($scope.triggerLength) : 0);
                         $scope.LOADING = false;
 
 
@@ -62,16 +63,19 @@
 
                         $scope.focus = function() {
                             $timeout(calcMaxHeight);
-                            $scope.SHOW = $scope.searchTerm && ($scope.triggerLength <= $scope.searchTerm.length);
+                            var length = $scope.searchTerm ? $scope.searchTerm.length : 0;
+                            $scope.SHOW = ($scope.triggerLength <= length);
                         };
 
                         $scope.blur = function() {
                             $scope.SHOW = false;
                             SELECTED_INDEX = -1;
-                            if(CACHED_INPUT_VALUE != $scope.searchTerm) {
-                                $scope.searchTerm = CACHED_INPUT_VALUE = '';
-                                if($scope.onEmpty instanceof Function) {
-                                    $scope.onEmpty({});
+                            if($scope.emptyOnBlur) {
+                                if(CACHED_INPUT_VALUE != $scope.searchTerm) {
+                                    $scope.searchTerm = CACHED_INPUT_VALUE = '';
+                                    if($scope.onEmpty instanceof Function) {
+                                        $scope.onEmpty({});
+                                    }
                                 }
                             }
                         };
@@ -133,6 +137,7 @@
                         //initialize
                         $timeout(function() {
                             $scope.search(true);
+                            $scope.SHOW = false;
                             //apply jquery
                             $scope.$$postDigest(calcMaxHeight);
                         });

@@ -4,7 +4,7 @@
         .directive('ffIcon', function($timeout) {
             return {
                 restrict: 'E',
-                replace: true,
+                replace: false,
                 scope: {
                     icon: '=',
                     color: "="

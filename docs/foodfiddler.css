@@ -626,19 +626,20 @@ nav .navbar-brand {
 
 .displayInlineBlock {
     display: inline-block;
+    vertical-align: middle;
 }
 
-.sm-icon {
+ff-icon.sm-icon div {
     font-size: 24px;
     vertical-align: middle;
 }
 
-.md-icon {
+ff-icon.md-icon div {
     font-size: 42px;
     margin-left: -18px;
 }
 
-.lg-icon {
+ff-icon.lg-icon div {
     font-size : 64px;
     margin-bottom: 6px;
 }

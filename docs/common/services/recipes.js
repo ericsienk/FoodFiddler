@@ -53,7 +53,7 @@
                 };
 
                 var getIngredients = function () {
-                    return $http.get('../data/ingredients.json');
+                    return $http.get('common/data/ingredients.json');
                 };
 
                 /**
