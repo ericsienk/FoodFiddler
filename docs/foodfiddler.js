@@ -30,7 +30,8 @@
         }
     ]);
 
-    foodfiddler.controller('FoodFiddlerCtrl', ['$scope', '$rootScope', 'ffRecipeService', '$route', function ($scope, $rootScope, ffRecipeService, $route) {
+    foodfiddler.controller('FoodFiddlerCtrl', ['$scope', '$rootScope', 'ffRecipeService', '$route', '$location',
+        function ($scope, $rootScope, ffRecipeService, $route, $location) {
         var cachedUser = null;
         firebase.auth().onAuthStateChanged(function (user) {
             cachedUser = user;
@@ -130,5 +131,12 @@
             }
         });
 
+        $scope.search = function(searchTerm) {
+            return ffRecipeService.getRecipes();
+        };
+
+        $scope.select = function(item) {
+            $location.path('recipe/' + item.id);
+        };
     }]);
 }(window.angular));

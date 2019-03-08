@@ -1,18 +1,13 @@
 <div>
-    <input class="form-control" ng-style="::{width : width}"
-           name="{{::name}}"
-           placeholder="{{::placeholder}}"
-           ng-focus="focus()"
-           ng-blur="blur()"
-           ng-change="search()"
-           ng-required="required"
-           ng-model="searchTerm"/>
+    <input class="form-control"
+           ng-style="::{width : width}"
+           name="{{::name}}" placeholder="{{::placeholder}}" onclick="this.select()"
+           ng-focus="focus()" ng-blur="blur()" ng-change="search()" ng-required="required"
+           ng-model="searchTerm" />
     <div class="ffAutosuggestWrapper">
         <ul class="ffAutosuggestContainer" data-ng-if="SHOW">
-            <li class="ffAutosuggestItem"
-                data-ng-repeat="item in filteredList"
-                data-ng-mousedown="select(item)">
-                <div ff-transclude></div>
+            <li class="ffAutosuggestItem" data-ng-repeat="item in filteredList track by $index | limitTo: 50" data-ng-mousedown="select(item)">
+                <div auto-transclude></div>
             </li>
             <li class="ffAutosuggestItem" data-ng-if="!filteredList.length && !LOADING">No results</li>
         </ul>
