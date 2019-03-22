@@ -3,7 +3,7 @@
         <div class="loading-indicator"></div>
     </div>
     <div data-ng-if="!loaders.page">
-        <div class="recipe-jumbotron">
+        <div class="recipe-jumbotron" imgur-loader="{{recipe.url}}" auto-watch="true">
             <div class="form-group row">
                 <div class="col-sm-2"></div>
                 <div class="form-inline col-sm-8">
@@ -36,25 +36,25 @@
         <div class="recipe-jumbotron textAlignLeft">
             <div class="form-inline form-group row">
                 <div class="input-group col-sm-3 marginBottom1em">
-                    <div class="icon-MIT {{ 'back-' + recipe.color }} input-group-addon"></div>
+                    <ff-icon class="{{ 'back-' + recipe.color }} input-group-addon" icon="'MIT'"></ff-icon>
                     <input class="form-control" name="tbMethod" ng-model="recipe.method"
                            ng-class="hasError('tbMethod', 'recipe')"
                            placeholder="Method" required>
                 </div>
                 <div class="input-group col-sm-3 marginBottom1em">
-                    <div class="icon-UTIL {{ 'back-' + recipe.color }} input-group-addon"></div>
+                    <ff-icon class="{{ 'back-' + recipe.color }} input-group-addon" icon="'UTIL'"></ff-icon>
                     <input class="form-control" name="tbPrep" ng-model="recipe.prep"
                            ng-class="hasError('tbPrep', 'recipe')"
                            placeholder="Prep" required>
                 </div>
                 <div class="input-group col-sm-3 marginBottom1em">
-                    <div class="icon-CLOCK {{ 'back-' + recipe.color }} input-group-addon"></div>
+                    <ff-icon class="{{ 'back-' + recipe.color }} input-group-addon" icon="'CLOCK'"></ff-icon>
                     <input class="form-control" name="tbMinutes"
                            ng-class="hasError('tbMinutes', 'recipe')"
                            ng-model="recipe.minutes" placeholder="Minutes" required>
                 </div>
                 <div class="input-group col-sm-3 marginBottom1em">
-                    <div class="icon-SERVE {{ 'back-' + recipe.color }} input-group-addon"></div>
+                    <ff-icon class="{{ 'back-' + recipe.color }} input-group-addon" icon="'SERVE'"></ff-icon>
                     <input class="form-control" name="tbServes"
                            ng-class="hasError('tbServes', 'recipe')"
                            ng-model="recipe.serves" placeholder="Serves" required>
