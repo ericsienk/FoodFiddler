@@ -654,7 +654,7 @@ ff-icon.lg-icon div {
 }
 
 /** recipe-preview.directive **/
-recipe-preview {
+[recipe-preview] {
     min-height: 275px;
 }
 
