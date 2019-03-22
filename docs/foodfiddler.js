@@ -13,6 +13,7 @@
         'foodfiddler.edit',
         'foodfiddler.directive.imgurLoader',
         'foodfiddler.directive.ffAutosuggest',
+        'foodfiddler.directive.recipePreview',
         'foodfiddler.directive.ffIcon',
         'foodfiddler.service.util',
         'foodfiddler.service.httpUtil',

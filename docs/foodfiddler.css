@@ -652,3 +652,41 @@ ff-icon.lg-icon div {
     font-size : 64px;
     margin-bottom: 6px;
 }
+
+.dynamic-grid-item {
+    transition:none !important; list-style:none;
+}
+
+/** recipe-preview.directive **/
+.recipe-preview {
+    height: 275px;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.recipe-preview .recipe-preview-thumbnail {
+    height: calc(275px - 33px);
+}
+
+.recipe-preview-options {
+    height: 33px;
+}
+
+.recipe-preview-title {
+    position: absolute;
+    bottom: 33px;
+    padding: 6px;
+    width: 100%;
+    color: #2f2f2f;
+    font-size: .9em;
+    display: inline;
+    background: #ffffff99;
+    transition: all .35s;
+}
+
+.recipe-preview:hover .recipe-preview-title {
+    background: #0000004d;
+    color: #ffffff;
+}
