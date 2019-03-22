@@ -684,6 +684,7 @@ ff-icon.lg-icon div {
     display: inline;
     background: #ffffff99;
     transition: all .35s;
+    text-transform: uppercase;
 }
 
 .recipe-preview:hover .recipe-preview-title {
