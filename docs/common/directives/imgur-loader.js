@@ -21,7 +21,7 @@
 
                             tmpImg.on('load', function () {
                                 element[0].style.transition = '.5s filter';
-                                element[0].style.background = 'url("' + url + '") ' + (attrs.options ? attrs.options : 'no-repeat center top');
+                                element[0].style.background = 'url("' + url + '") ' + (attrs.options ? attrs.options : 'no-repeat center');
                                 element[0].style.backgroundSize = 'cover';
                                 element[0].style.filter = '';
                                 element.removeAttr("imgur-loader");
