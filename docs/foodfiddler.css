@@ -667,7 +667,7 @@ recipe-preview {
 }
 
 .recipe-preview .recipe-preview-thumbnail {
-    height: calc(275px - 33px);
+    height: 242px;
 }
 
 .recipe-preview-options {
