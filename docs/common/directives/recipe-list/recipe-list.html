@@ -1,5 +1,5 @@
 <ul class="dynamic-grid" angular-grid="recipes" ag-grid-width="273" ag-gutter-size="30" ag-angular-grid-id="gallery">
-    <li style="transition:none !important; list-style:none;" ng-repeat="recipe in recipes track by $index">
+    <li style="transition:none !important; list-style:none;" ng-repeat="recipe in recipes">
         <recipe-preview recipe="recipe"></recipe-preview>
     </li>
 </ul>
