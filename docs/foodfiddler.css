@@ -653,11 +653,11 @@ ff-icon.lg-icon div {
     margin-bottom: 6px;
 }
 
-.dynamic-grid-item {
-    transition:none !important; list-style:none;
+/** recipe-preview.directive **/
+recipe-preview {
+    min-height: 275px;
 }
 
-/** recipe-preview.directive **/
 .recipe-preview {
     height: 275px;
     position: relative;
