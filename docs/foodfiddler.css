@@ -32,7 +32,7 @@
     height: 100px;
     z-index: 99999;
     box-shadow: 0 0 9px -2px black;
-    border-radius: 6px;
+    border-radius: 50%;
     top: calc(50% - 50px);
     left: calc(50% - 50px);
     animation: scale-in .35s;
