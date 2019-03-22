@@ -31,11 +31,25 @@
     width: 100px;
     height: 100px;
     z-index: 99999;
-    box-shadow: 0 0 9px -2px black;
     border-radius: 50%;
     top: calc(50% - 50px);
     left: calc(50% - 50px);
-    animation: scale-in .35s;
+    animation: scale-in .35s, pulse 1.7s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(255,64,129, 0.7);
+        box-shadow: 0 0 0 0 rgba(255,64,129, 0.7);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 20px rgba(255,64,129, 0);
+        box-shadow: 0 0 0 20px rgba(255,64,129, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(255,64,129, 0);
+        box-shadow: 0 0 0 0 rgba(255,64,129, 0);
+    }
 }
 
 .fade {
