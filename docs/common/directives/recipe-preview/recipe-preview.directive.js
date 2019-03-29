@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
     angular.module('foodfiddler.directive.recipePreview', [])
-        .directive('recipePreview', ['$location', function($location) {
+        .directive('recipePreview', [function() {
             return ({
                 restrict: 'AE',
                 scope: {

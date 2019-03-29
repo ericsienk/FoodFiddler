@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
     angular.module('foodfiddler.directive.ffIcon', [])
-        .directive('ffIcon', function($timeout) {
+        .directive('ffIcon', function() {
             return {
                 restrict: 'E',
                 replace: false,

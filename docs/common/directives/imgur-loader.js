@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
     angular.module('foodfiddler.directive.imgurLoader', [])
-        .directive('imgurLoader', function($timeout, lazyLoaderService) {
+        .directive('imgurLoader', ['$timeout', 'lazyLoaderService', function($timeout, lazyLoaderService) {
             return {
                 restrict: 'A',
                 link: function (scope, element, attrs) {
@@ -72,5 +72,5 @@
                     }
                 }
             };
-        });
+        }]);
 }(angular));

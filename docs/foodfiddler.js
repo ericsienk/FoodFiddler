@@ -20,6 +20,7 @@
         'foodfiddler.service.lazyLoaderService',
         'angularGrid'
     ];
+    //DO NOT ALTER appDependencies.push('templates-dist');
     var foodfiddler = angular.module('foodfiddler', appDependencies);
 
     foodfiddler.config(['$routeProvider', '$httpProvider', '$logProvider',
@@ -31,8 +32,15 @@
         }
     ]);
 
-    foodfiddler.controller('FoodFiddlerCtrl', ['$scope', '$rootScope', 'ffRecipeService', '$route', '$location',
-        function ($scope, $rootScope, ffRecipeService, $route, $location) {
+    foodfiddler.constant('HEX_COLORS', {
+        green : '#CAE0C7',
+        purple : '#CBC7DF',
+        yellow : '#EDBC5E',
+        pink : '#E2C7D2'
+    });
+
+    foodfiddler.controller('FoodFiddlerCtrl', ['$scope', '$rootScope', 'ffRecipeService', '$route', '$location', '$templateCache',
+        function ($scope, $rootScope, ffRecipeService, $route, $location, $templateCache) {
         var cachedUser = null;
         firebase.auth().onAuthStateChanged(function (user) {
             cachedUser = user;
