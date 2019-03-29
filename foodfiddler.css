@@ -405,7 +405,6 @@ nav .navbar-brand {
 
     .recipe-jumbotron.recipe-image h2 {
         letter-spacing: 0.7em;
-        padding-top: 6%;
         text-align: center;
         padding-left: 10%;
         padding-right: 10%;
@@ -413,6 +412,10 @@ nav .navbar-brand {
         width: 100%;
         background: rgba(0,0,0,.1);
         position: relative;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
     }
 }
 
