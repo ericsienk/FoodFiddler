@@ -100,6 +100,8 @@ module.exports = function (grunt) {
                     match: [
                         {'app.js': 'dist/app.js'},
                         {'common/data/ingredients.json': 'dist/common/data/ingredients.json'},
+                        {'foodfiddler.css': 'dist/foodfiddler.css'},
+                        {'common/data/fonts/generated/iconfont.css': 'dist/common/data/fonts/generated/iconfont.css'}
                     ],
                     replacement: 'md5',
                     position: 'append',
