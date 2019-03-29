@@ -93,6 +93,24 @@ module.exports = function (grunt) {
             assests: {
                 files: [{expand: true, cwd: 'docs/', src: ['common/data/**', 'foodfiddler.css'], dest: 'dist/'}]
             }
+        },
+        cachebreaker: {
+            prod: {
+                options: {
+                    match: [
+                        {'app.js': 'dist/app.js'},
+                        {'common/data/ingredients.json': 'dist/common/data/ingredients.json'},
+                    ],
+                    replacement: 'md5',
+                    position: 'append',
+                    src: {
+                        path: 'dist/app.js'
+                    }
+                },
+                files: {
+                    src: ['dist/index.html', 'dist/app.js']
+                }
+            }
         }
     });
 
@@ -105,7 +123,8 @@ module.exports = function (grunt) {
         'uglify:dist',
         'clean:temp',
         'copy:index',
-        'copy:assests'
+        'copy:assests',
+        'cachebreaker:prod'
     ]);
     grunt.registerTask('go live!', ['package', 'gh-pages', 'clean:ghp'])
 };
