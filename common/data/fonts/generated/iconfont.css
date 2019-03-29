@@ -1,0 +1,108 @@
+@font-face {
+	font-family: "iconfont";
+	src: url("iconfont.eot?6a3d3e1124e627292461bc05f5a78c28?#iefix") format("embedded-opentype"),
+url("iconfont.woff2?6a3d3e1124e627292461bc05f5a78c28") format("woff2"),
+url("iconfont.woff?6a3d3e1124e627292461bc05f5a78c28") format("woff");
+}
+
+.icon {
+	line-height: 1;
+}
+
+.icon:before {
+	font-family: iconfont !important;
+	font-style: normal;
+	font-weight: normal !important;
+	vertical-align: top;
+}
+
+.icon-BANANA:before {
+	content: "\f101";
+}
+.icon-BROWN_SUG:before {
+	content: "\f102";
+}
+.icon-BUTTER:before {
+	content: "\f103";
+}
+.icon-CLOCK:before {
+	content: "\f104";
+}
+.icon-COCOA:before {
+	content: "\f105";
+}
+.icon-COW_F:before {
+	content: "\f106";
+}
+.icon-COW:before {
+	content: "\f107";
+}
+.icon-CREAM_CH:before {
+	content: "\f108";
+}
+.icon-EGG_W:before {
+	content: "\f109";
+}
+.icon-EGG:before {
+	content: "\f10a";
+}
+.icon-FLOUR:before {
+	content: "\f10b";
+}
+.icon-KISS:before {
+	content: "\f10c";
+}
+.icon-MARG:before {
+	content: "\f10d";
+}
+.icon-MIT:before {
+	content: "\f10e";
+}
+.icon-PEANUT:before {
+	content: "\f10f";
+}
+.icon-PIE_SHELL:before {
+	content: "\f110";
+}
+.icon-POW_SUGAR:before {
+	content: "\f111";
+}
+.icon-PRETZEL:before {
+	content: "\f112";
+}
+.icon-PUDDING:before {
+	content: "\f113";
+}
+.icon-PUMPKIN:before {
+	content: "\f114";
+}
+.icon-RIBS:before {
+	content: "\f115";
+}
+.icon-SAUCE:before {
+	content: "\f116";
+}
+.icon-SERVE:before {
+	content: "\f117";
+}
+.icon-SHORT:before {
+	content: "\f118";
+}
+.icon-SOUR_CRM:before {
+	content: "\f119";
+}
+.icon-SPOON:before {
+	content: "\f11a";
+}
+.icon-SUGAR:before {
+	content: "\f11b";
+}
+.icon-UTIL:before {
+	content: "\f11c";
+}
+.icon-VANILLA:before {
+	content: "\f11d";
+}
+.icon-VEG_OIL:before {
+	content: "\f11e";
+}
