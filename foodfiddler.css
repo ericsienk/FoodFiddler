@@ -315,8 +315,10 @@ body {
     
     .item-list {
         height: calc(100vh - 247px);
-        overflow-y: auto;
+        overflow-y: scroll;
         overflow-x: hidden;
+        overscroll-behavior: none;
+        padding-bottom: 247px;
     }
 
     .item-list-wrapper {
