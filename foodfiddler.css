@@ -693,11 +693,15 @@ ff-icon.lg-icon .icon {
 }
 
 @media (max-width: 991px) {
-    .item-button .glyphicon {
-        margin-left:3px;
+    .item-button .glyphicon{
+        margin-left: 3px;
     }
 
-    .item-button .recipe-list, .item-button .item-list {
+    .item-list-wrapper .glyphicon {
+        margin-left: -3px;
+    }
+
+  .item-button .recipe-list, .item-button .item-list {
         display: none;
     }
 
