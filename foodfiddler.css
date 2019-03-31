@@ -118,6 +118,10 @@
     display: none;
 }
 
+.fab .fab-toggle, .item-button .fab-toggle {
+    display: none;
+}
+
 .fab:focus { outline:0 !important; }
 
 .marginLeftRight10Percent {
@@ -155,7 +159,6 @@
     margin: 18px;
     padding: 18px;
     color: white;
-    transition: border-radius .35s,margin .5s;
 }
 
 .navbar-collapse.collapse {
@@ -281,14 +284,49 @@ body {
         z-index: 999;
     }
 
+    .item-button .recipe-list, .item-button .item-list {
+        display: none;
+    }
+
     .item-button {
-        height: 40px;
-        width: 40px;
-        border-radius: 50% !important;
-        color: rgba(0,0,0,0) !important;
-        margin: -4px !important;
+        padding: 6px;
+        text-align: center;
+        height: 30px;
+        width: 108px;
+        margin: 0 0 0 -54px;
+        bottom: 0;
+        left: 50%;
         position: fixed;
-        box-shadow: 0px 1px 4px #ccc;
+        box-shadow: 0 1px 8px #ccc;
+        text-transform: uppercase;
+        font-size: 13px;
+    }
+
+    .fab .fab-toggle, .item-button .fab-toggle {
+        display: inline-block;
+    }
+
+    .item-list-wrapper .fab-toggle {
+        padding: 6px;
+        box-shadow: 0 3px 15px 0px #6b6b6b45;
+        margin-bottom: 6px;
+        text-align: center;
+    }
+    
+    .item-list {
+        height: 50vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .item-list-wrapper {
+        margin: 0;
+        left: 0;
+        right: 0;
+        top: 203px;
+        position: fixed;
+        bottom: 0;
+        padding: 0;
     }
 }
 
