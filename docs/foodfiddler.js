@@ -39,8 +39,8 @@
         pink : '#E2C7D2'
     });
 
-    foodfiddler.controller('FoodFiddlerCtrl', ['$scope', '$rootScope', 'ffRecipeService', '$route', '$location', '$templateCache',
-        function ($scope, $rootScope, ffRecipeService, $route, $location, $templateCache) {
+    foodfiddler.controller('FoodFiddlerCtrl', ['$scope', '$rootScope', 'ffRecipeService', '$route', '$location',
+        function ($scope, $rootScope, ffRecipeService, $route, $location) {
         var cachedUser = null;
         firebase.auth().onAuthStateChanged(function (user) {
             cachedUser = user;
@@ -131,16 +131,7 @@
             $rootScope.user.loggedIn ? signout() : login();
         };
 
-        var destroyWatch = $scope.$watch(function () {
-            return $route.current;
-        }, function (newValue, oldValue) {
-            if ($route.current) {
-                $scope.currentNavItem = $route.current.$$route.currentNavItem;
-                destroyWatch();
-            }
-        });
-
-        $scope.search = function(searchTerm) {
+        $scope.search = function() {
             return ffRecipeService.getRecipes();
         };
 

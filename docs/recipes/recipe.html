@@ -7,9 +7,10 @@
          style="right: 3%;margin-top: 1%;">
         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit
     </div>
-    <div style="overflow: hidden">
-        <div class="recipe-jumbotron recipe-image {{ ::('back-' + recipe.color) }}" max="true" imgur-loader="{{recipe.url}}">
-            <h2 class="bold">{{::recipe.title}}</h2>
+    <div class="{{ ::('back-' + recipe.color) }} recipe-jumbotron jumbo-image-wrapper">
+        <div class="jumbo-image" max="true" imgur-loader="{{recipe.url}}"></div>
+        <div class="jumbo-image-title-wrapper">
+            <span class="jumbo-image-title">{{::recipe.title}}</span>
         </div>
     </div>
     <div class="recipe-jumbotron">

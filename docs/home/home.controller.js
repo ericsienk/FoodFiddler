@@ -30,9 +30,6 @@ angular.module('foodfiddler.home', ['ngRoute'])
                         return ingredient.name != "sugar";
                     });
                 }
-
-
             });
-            console.log($scope.filteredRecipes);
         };
     }]);
