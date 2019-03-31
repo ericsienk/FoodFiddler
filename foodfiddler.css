@@ -314,7 +314,7 @@ body {
     }
     
     .item-list {
-        height: 50vh;
+        height: calc(100vh - 247px);
         overflow-y: auto;
         overflow-x: hidden;
     }
