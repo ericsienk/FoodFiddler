@@ -693,6 +693,16 @@ ff-icon.lg-icon .icon {
 }
 
 @media (max-width: 991px) {
+    @keyframes expandUp {
+        0% {
+            transform: translateY(100%) scale(0.6) scaleY(0.5);
+        }
+
+        100% {
+            transform: translateY(0%) scale(1) scaleY(1);
+        }
+    }
+
     .item-button .glyphicon{
         margin-left: 3px;
     }
@@ -746,5 +756,6 @@ ff-icon.lg-icon .icon {
         position: fixed;
         bottom: 0;
         padding: 0;
+        animation: expandUp .5s ease;
     }
 }
