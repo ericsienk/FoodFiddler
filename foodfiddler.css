@@ -740,10 +740,10 @@ ff-icon.lg-icon .icon {
 
     .item-list-wrapper .fab-toggle {
         padding: 6px;
-        box-shadow: 0 3px 15px 0px #6b6b6b45;
+        box-shadow: 0 3px 15px 0 #6b6b6b45;
         margin: 0 auto 6px auto;
         text-align: center;
-        max-width: 440px;
+        max-width: 275px
     }
 
     .item-list {
@@ -751,7 +751,7 @@ ff-icon.lg-icon .icon {
         overflow-y: scroll;
         overflow-x: hidden;
         overscroll-behavior: none;
-        padding-bottom: 247px;
+        padding: 0 18px 247px 18px;
     }
 
     .item-list-wrapper {
@@ -762,7 +762,7 @@ ff-icon.lg-icon .icon {
         position: fixed;
         bottom: 0;
         padding: 0;
-        max-width: 440px;
+        max-width: 275px;
         animation: slideUp .2s ease;
         box-shadow: 0 11px 60px 20px #6f6f6f8c;
     }
