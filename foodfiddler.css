@@ -741,8 +741,9 @@ ff-icon.lg-icon .icon {
     .item-list-wrapper .fab-toggle {
         padding: 6px;
         box-shadow: 0 3px 15px 0px #6b6b6b45;
-        margin-bottom: 6px;
+        margin: 0 auto 6px auto;
         text-align: center;
+        max-width: 440px;
     }
 
     .item-list {
@@ -754,13 +755,15 @@ ff-icon.lg-icon .icon {
     }
 
     .item-list-wrapper {
-        margin: 0;
+        margin: auto;
         left: 0;
         right: 0;
         top: 203px;
         position: fixed;
         bottom: 0;
         padding: 0;
+        max-width: 440px;
         animation: slideUp .2s ease;
+        box-shadow: 0 11px 60px 20px #6f6f6f8c;
     }
 }
