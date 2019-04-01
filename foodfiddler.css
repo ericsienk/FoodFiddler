@@ -297,13 +297,13 @@ img {
 }
 
 nav {
-    box-shadow: 0 1px 5px -2px #666;
+    /*box-shadow: 0 1px 5px -2px #666;*/
     padding-bottom: 0 !important;
     padding-top: 0 !important;
 }
 
 nav .active {
-    border-bottom: 2px solid rgb(255,64,129);
+    border-bottom: 3px solid rgb(255,64,129);
 }
 
 nav .active a {
@@ -362,7 +362,6 @@ nav .navbar-brand {
 .recipe-jumbotron {
     text-align: center;
     text-transform: uppercase;
-    border-bottom: 2px solid #E6E7E8;
     padding-bottom: 9px;
     padding-top:32px;
 }
@@ -524,10 +523,6 @@ nav .navbar-brand {
 @media (max-width: 576px) {
     .instruction-container {
         font-size: 12px;
-    }
-
-    .recipe-jumbotron {
-        border-bottom: 1px solid #E6E7E8;
     }
 
     .col-3 {
@@ -764,6 +759,5 @@ ff-icon.lg-icon .icon {
         padding: 0;
         max-width: 275px;
         animation: slideUp .2s ease;
-        box-shadow: 0 11px 60px 20px #6f6f6f8c;
     }
 }
