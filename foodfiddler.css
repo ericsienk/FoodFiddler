@@ -695,12 +695,16 @@ ff-icon.lg-icon .icon {
 @media (max-width: 991px) {
     @keyframes expandUp {
         0% {
-            transform: translateY(100%) scale(0.6) scaleY(0.5);
+            transform: translateY(100%) scale(0.8) scaleY(0.5);
         }
 
         100% {
             transform: translateY(0%) scale(1) scaleY(1);
         }
+    }
+
+    .fab-toggle {
+        cursor: pointer;
     }
 
     .item-button .glyphicon{
@@ -711,7 +715,7 @@ ff-icon.lg-icon .icon {
         margin-left: -3px;
     }
 
-  .item-button .recipe-list, .item-button .item-list {
+    .item-button .recipe-list, .item-button .item-list {
         display: none;
     }
 
@@ -756,6 +760,6 @@ ff-icon.lg-icon .icon {
         position: fixed;
         bottom: 0;
         padding: 0;
-        animation: expandUp .5s ease;
+        animation: expandUp .2s ease;
     }
 }
