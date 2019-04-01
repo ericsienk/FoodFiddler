@@ -1,0 +1,19 @@
+<div class="item-container {{'back-' + color }}"  ng-class="{'item-button' : fab, 'item-list-wrapper': !fab}">
+    <div class="fab-toggle row" ng-click="toggleFab()">
+        <div class="col-8 textAlignRight">INGREDIENTS</div>
+        <div class="col-4 textAlignLeft">
+            <i style="margin-top:4px" class="fa glyphicon" ng-class="{'fa-angle-up' : fab, 'fa-angle-down' : !fab }"></i>
+        </div>
+    </div>
+    <div class="item-list">
+        <div class="row recipe-list" ng-repeat="i in ingredients track by $index">
+            <div class="col-8 textAlignRight">
+                <p class="margin0px bold">{{i.amount}}</p>
+                <p>{{i.name}}</p>
+            </div>
+            <div class="col-4">
+                <ff-icon icon="i.ingredientTag" class="md-icon"></ff-icon>
+            </div>
+        </div>
+    </div>
+</div>

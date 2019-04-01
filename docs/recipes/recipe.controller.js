@@ -13,14 +13,6 @@ angular.module('foodfiddler.recipe', ['ngRoute'])
         function ($scope, ffRecipeService, $routeParams, util, $rootScope, $location) {
 
         this.currentNavItem = 'recipe';
-        $scope.fab = true;
-        $scope.toggleFAB = function () {
-            if ($scope.fab === undefined) {
-                $scope.fab = false;
-            } else {
-                $scope.fab = !$scope.fab;
-            }
-        };
 
         ffRecipeService.getRecipeById($routeParams.recipeId).then(function (response) {
             var tmp = response.data;

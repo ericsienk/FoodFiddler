@@ -1,7 +1,7 @@
 <html lang="en" ng-app="foodfiddler" ng-controller="FoodFiddlerCtrl">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
@@ -47,7 +47,7 @@
             </li>
             <li class="nav-item" ng-class="{active : isSelected('add')}" data-ng-if="isAdmin()">
                 <a class="nav-link" href="#/add/">
-                    <i class="fa fa-cutlery" aria-hidden="true"></i>
+                    <i class="fa fa-utensils" aria-hidden="true"></i>
                     <span class="nav-text">CREATE</span>
                     <span data-ng-if="isSelected('add')" class="sr-only">(current)</span>
                 </a>
@@ -121,6 +121,7 @@
 <script src="home/home.controller.js"></script>
 <script src="recipes/recipe.controller.js"></script>
 <script src="edit/edit-recipe.controller.js"></script>
+<script src="common/directives/ingredient-list/ingredient-list.directive.js"></script>
 <script src="common/directives/imgur-loader.js"></script>
 <script src="common/directives/angulargrid.js"></script>
 <script src="common/directives/autosuggest/ff-autosuggest.directive.js"></script>

@@ -15,6 +15,7 @@
         'foodfiddler.directive.ffAutosuggest',
         'foodfiddler.directive.recipePreview',
         'foodfiddler.directive.ffIcon',
+        'foodfiddler.directive.ingredientList',
         'foodfiddler.service.util',
         'foodfiddler.service.httpUtil',
         'foodfiddler.service.lazyLoaderService',
