@@ -208,6 +208,12 @@
     border-top-right-radius: 1rem;
     border-top-left-radius: 1rem;
 }
+
+.list-group .active {
+    color: white !important;
+    background: rgb(255,64,129);
+}
+
 .brand-wrapper {
     padding-left: 1em;
     display: flex;

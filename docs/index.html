@@ -61,6 +61,9 @@
                     <span class="nav-text">{{$root.user.displayName}}</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="accountDropdown">
+                    <a ng-if="$root.user.loggedIn" class="dropdown-item" href="#/settings">
+                        Settings
+                    </a>
                     <a class="dropdown-item" data-ng-click="decideAction()">
                         {{$root.user.loggedIn ? 'Sign out' : 'Login'}}
                     </a>
@@ -116,6 +119,7 @@
 <script src="common/services/http-util.js"></script>
 <script src="common/services/lazy-loader.js"></script>
 <script src="common/services/recipes.js"></script>
+<script src="common/services/auth.js"></script>
 <script src="common/directives/recipe-list/recipe-list.directive.js"></script>
 <script src="common/directives/ingredient-picker/ingredient-picker.directive.js"></script>
 <script src="home/home.controller.js"></script>
@@ -127,6 +131,8 @@
 <script src="common/directives/autosuggest/ff-autosuggest.directive.js"></script>
 <script src="common/directives/ff-icon.js"></script>
 <script src="common/directives/recipe-preview/recipe-preview.directive.js"></script>
+<script src="settings/settings.directive.js"></script>
+<script src="settings/tags/tags.directive.js"></script>
 <!-- replace with app.js end -->
 
 </body>

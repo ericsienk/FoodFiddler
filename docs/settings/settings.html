@@ -1,0 +1,24 @@
+<div>
+<h2>Settings</h2>
+<p>Secret place to adjust admin panel things</p>
+</div>
+<div class="row">
+    <div class="col-4">
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action"
+               ng-click="select('tags')"
+               ng-class="{active: isSelected('tags')}">
+                Tags
+            </a>
+            <a class="list-group-item list-group-item-action">
+                Colors
+            </a>
+            <a class="list-group-item list-group-item-action">
+                Methods
+            </a>
+        </div>
+    </div>
+    <div class="col-8">
+        <ff-tags ng-if="isSelected('tags')"></ff-tags>
+    </div>
+</div>

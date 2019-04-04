@@ -16,24 +16,22 @@
         'foodfiddler.directive.recipePreview',
         'foodfiddler.directive.ffIcon',
         'foodfiddler.directive.ingredientList',
+        'foodfiddler.directive.settings',
         'foodfiddler.service.util',
         'foodfiddler.service.httpUtil',
         'foodfiddler.service.lazyLoaderService',
+        'foodfiddler.service.auth',
+        'foodfiddler.directive.tags',
         'angularGrid'
     ];
     //DO NOT ALTER appDependencies.push('templates-dist');
     var foodfiddler = angular.module('foodfiddler', appDependencies);
 
-    foodfiddler.config(['$routeProvider', '$httpProvider', '$logProvider',
-        function ($routeProvider, $httpProvider, $logProvider) {
-            $routeProvider.otherwise({redirectTo: '/home'});
-            $httpProvider.defaults.headers.post = {"Content-Type": "application/json"};
-            $httpProvider.defaults.xhrFields = {withCredentials: true};
-            $logProvider.debugEnabled = true;
-        }
-    ]);
-
-    foodfiddler.constant('HEX_COLORS', {
+    foodfiddler.config(['$routeProvider', function ($routeProvider) {
+        $routeProvider.when('/settings/', {
+            template: '<ff-settings></ff-settings>'
+        }).otherwise({redirectTo: '/home'});
+    }]).constant('HEX_COLORS', {
         green : '#CAE0C7',
         purple : '#CBC7DF',
         yellow : '#EDBC5E',
