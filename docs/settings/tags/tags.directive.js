@@ -4,7 +4,7 @@
         .directive('ffTags', [function() {
             return ({
                 restrict: 'E',
-                templateUrl: '/settings/tags/tags.html',
+                templateUrl: 'settings/tags/tags.html',
                 controller: ['$scope', function ($scope) {
 
 

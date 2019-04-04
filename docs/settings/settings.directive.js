@@ -4,7 +4,7 @@
         .directive('ffSettings', [function() {
             return ({
                 restrict: 'E',
-                templateUrl: '/settings/settings.html',
+                templateUrl: 'settings/settings.html',
                 controller: ['$scope', 'auth', function ($scope, auth) {
 
                     var controls = {
