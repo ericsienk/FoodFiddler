@@ -21,6 +21,7 @@
         'foodfiddler.service.httpUtil',
         'foodfiddler.service.lazyLoaderService',
         'foodfiddler.service.auth',
+        'foodfiddler.service.tags',
         'foodfiddler.directive.tags',
         'angularGrid'
     ];

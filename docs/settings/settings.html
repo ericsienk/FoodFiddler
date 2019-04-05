@@ -3,8 +3,8 @@
 <p>Secret place to adjust admin panel things</p>
 </div>
 <div class="row">
-    <div class="col-4">
-        <div class="list-group">
+    <div class="col-12">
+        <div class="list-group horizontal">
             <a class="list-group-item list-group-item-action"
                ng-click="select('tags')"
                ng-class="{active: isSelected('tags')}">
@@ -18,7 +18,9 @@
             </a>
         </div>
     </div>
-    <div class="col-8">
+</div>
+<div class="row">
+    <div class="col-12">
         <ff-tags ng-if="isSelected('tags')"></ff-tags>
     </div>
 </div>

@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('foodfiddler.service.recipes', [])
-        .factory('ffRecipeService', ['$http', 'util', 'httpUtil', function ($http, util, httpUtil) {
+        .factory('ffRecipeService', ['$http', 'util', 'httpUtil', 'ffTagsService', function ($http, util, httpUtil, ffTagsService) {
                 var recipeIndexer = util.getHashIndexer(),
                     ingredients,
                     BASE_TABLE = 'foodfiddler/recipes/';
@@ -12,15 +12,54 @@
                 }
 
                 function getRecipeById(id) {
-                    return httpUtil.firebaseGetById(BASE_TABLE, recipeIndexer, id);
+                    return httpUtil.firebaseGetById(BASE_TABLE, recipeIndexer, id).then(function(response) {
+                        // transform list of tag id's to full tag objects
+                        response.data.tags = response.data.tags || [];
+                        response.data.tags.forEach(function(tag, index) {
+                            if(typeof(tag) === 'string') {
+                                response.data.tags[index] = {id: tag};
+                                // async replace
+                                httpUtil.optimisticGet(
+                                    ffTagsService.getRecipeTag(tag),
+                                    response.data.tags,
+                                    index
+                                );
+                            }
+                        });
+
+                        return response;
+                    });
+                }
+
+                function normalizeRecipe(recipe) {
+                    var tmp = angular.copy(recipe);
+                    tmp.tags = tmp.tags || [];
+                    tmp.tags = tmp.tags.map(function(tag) {
+                        return (tag && typeof(tag) !== 'string') ? tag.id : tag;
+                    });
+                    return tmp;
                 }
 
                 function createRecipe(recipe) {
-                    return httpUtil.firebaseCreate(BASE_TABLE, recipeIndexer, recipe);
+                    var prepped = normalizeRecipe(recipe);
+
+                    return httpUtil.firebaseCreate(BASE_TABLE, recipeIndexer, prepped).then(function() {
+                        recipe.id = prepped.id;
+
+                        return recipe;
+                    });
                 }
 
                 function saveRecipe(recipe) {
-                    return httpUtil.firebaseUpdate(BASE_TABLE, recipeIndexer,recipe);
+                    var prepped = normalizeRecipe(recipe);
+                    prepped.tags= ['testTag'];
+                    var tagUpdates = recipeIndexer.diff(prepped, 'tags', normalizeRecipe);
+
+                    return httpUtil.firebaseUpdate(BASE_TABLE, recipeIndexer, prepped).then(function() {
+                        return ffTagsService.updateTagRecipes(recipe, tagUpdates).then(function() {
+                            return recipe;
+                        })
+                    });
                 }
 
                 function deleteRecipe(recipe) {

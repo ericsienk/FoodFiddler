@@ -3,6 +3,23 @@
 
     angular.module('foodfiddler.service.util', [])
         .factory('util', [function () {
+            function accessProperty(obj, path) {
+                return path.split('.').reduce(function(nestedObj, prop) {return nestedObj[prop]}, obj);
+            }
+
+            function formObject(arr, deepCopy) {
+                var tmp;
+                if(arr instanceof Array) {
+                    // create map version if array
+                    tmp = {};
+                    arr.forEach(function(item) { tmp[item] = item});
+                } else {
+                    tmp = deepCopy ? angular.copy(arr) : arr;
+                }
+
+                return tmp;
+            }
+
             return {
                 decodeNewLines: function (s) {
                     return (s ? s.replace(/(\r\n|\n|\r)/gm, "<br />") : s);
@@ -132,6 +149,61 @@
                             } else {
                                 this.list[this.indexer[item.id]] = angular.copy(item);
                             }
+                        },
+                        /**
+                         * diff
+                         * looks up item in cache and drills into properties by propertyPath
+                         * returns an object of merges: [], deletes: []
+                         * these lists contain {key: value} (key and value will be same for unique array items)
+                         * @param itemToCompare
+                         * @param propertyPath
+                         * @param onGetItem
+                         * @returns {{deletes: Array, merges: Array}}
+                         */
+                        diff: function(itemToCompare, propertyPath, onGetItem) {
+                            var compare = accessProperty(itemToCompare, propertyPath),
+                                updates = {
+                                    deletes: [],
+                                    merges: []
+                                };
+
+                            var tmpCompare = formObject(compare, true);
+
+                            var item = this.get(itemToCompare.id);
+                            if(item) {
+                                if(onGetItem instanceof Function) {
+                                    item = onGetItem(angular.copy(item));
+                                }
+
+                                angular.forEach(formObject(accessProperty(item, propertyPath)), function(value, key) {
+                                    if(!angular.isDefined(tmpCompare[key])) {
+                                        // deleted
+                                        updates.deletes.push({
+                                            key: key,
+                                            value: value
+                                        });
+                                    } else {
+                                        if(value != tmpCompare[key]) {
+                                            // updated
+                                            updates.merges.push({
+                                                key: key,
+                                                value: value
+                                            });
+                                        }
+                                        delete tmpCompare[key]; //remove for later
+                                    }
+                                });
+                            }
+
+                            // all properties left are added differences
+                            angular.forEach(tmpCompare, function(value, key) {
+                                updates.merges.push({
+                                    key: key,
+                                    value: value
+                                });
+                            });
+
+                            return updates;
                         }
                     }
                 }
