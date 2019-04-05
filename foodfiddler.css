@@ -12,9 +12,12 @@
 .font-pink {  color : #E2C7D2;  }
 .back-white {  background-color: white;  }
 .font-white {  color : white;  }
-.btn {
-    color : #666 !important;
+
+.list-group.horizontal {
+    -webkit-box-orient: horizontal;
+    flex-direction: inherit;
 }
+
 .btn:hover {
     color : black !important;
 }
