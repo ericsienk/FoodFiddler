@@ -21,7 +21,7 @@ angular.module('foodfiddler.edit', ['ngRoute'])
             $scope.recipe = {ingredients: [], color: 'green'};
             $scope.loaders = {page: true, sum: 0, max: 2};
             $scope.hexColors = HEX_COLORS;
-            $scope.colors = util.objectToArray(HEX_COLORS, 'name');
+            $scope.colors = util.arrayFromMap(HEX_COLORS, 'name');
             $scope.forms = {};
             $scope.radioFunction = 'move';
             $scope.picker = {};
@@ -124,11 +124,14 @@ angular.module('foodfiddler.edit', ['ngRoute'])
                     }
                 },
                 onResponse: function (data) {
-                    ffRecipeService.evaluateCache($scope.recipe, ACTION);
                     var path = ACTION >= 0 ? ('/recipe/' + $scope.recipe.id) : '/home';
                     $location.path(path);
                 },
                 delete: function () {
+                    $timeout(function () {
+                        $('#chickenModal').modal('hide');
+                    });
+
                     ACTION = -1;
                     ffRecipeService.deleteRecipe($scope.recipe).then($scope.recipeActions.onResponse);
                 },

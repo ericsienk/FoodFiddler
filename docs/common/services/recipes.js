@@ -2,59 +2,34 @@
     'use strict';
 
     angular.module('foodfiddler.service.recipes', [])
-        .factory('ffRecipeService', ['$log', '$http', '$q', 'util', 'httpUtil',
-            function ($log, $http, $q, util, httpUtil) {
+        .factory('ffRecipeService', ['$http', 'util', 'httpUtil', function ($http, util, httpUtil) {
+                var recipeIndexer = util.getHashIndexer(),
+                    ingredients,
+                    BASE_TABLE = 'foodfiddler/recipes/';
 
-                var recipes,
-                    recipeHashIndexer,
-                    ingredients;
+                function getRecipes() {
+                    return httpUtil.firebaseGet(BASE_TABLE, recipeIndexer);
+                }
 
-                var getRecipes = function () {
-                    var deferred = $q.defer();
-                    if (recipes) {
-                        deferred.resolve(httpUtil.packData(recipes));
-                    } else {
-                        httpUtil.firebaseTo$qResolve(firebase.database().ref('foodfiddler/recipes').once('value'), function (response) {
-                            recipeHashIndexer = {};
-                            recipes = util.objectToArray(response.data, 'id', recipeHashIndexer);
-                            deferred.resolve(httpUtil.packData(recipes));
-                        });
-                    }
-                    return deferred.promise;
-                };
+                function getRecipeById(id) {
+                    return httpUtil.firebaseGetById(BASE_TABLE, recipeIndexer, id);
+                }
 
-                var getRecipeById = function (id) {
-                    var deferred = $q.defer();
+                function createRecipe(recipe) {
+                    return httpUtil.firebaseCreate(BASE_TABLE, recipeIndexer, recipe);
+                }
 
-                    if (recipeHashIndexer && recipeHashIndexer[id] && recipes && (recipes.length > recipeHashIndexer[id])) {
-                        deferred.resolve(httpUtil.packData(recipes[recipeHashIndexer[id]]));
-                    } else {
-                        httpUtil.firebaseTo$qResolve(firebase.database().ref('/foodfiddler/recipes/' + id).once('value'), deferred.resolve);
-                    }
+                function saveRecipe(recipe) {
+                    return httpUtil.firebaseUpdate(BASE_TABLE, recipeIndexer,recipe);
+                }
 
-                    return deferred.promise;
-                };
+                function deleteRecipe(recipe) {
+                    return httpUtil.firebaseDelete(BASE_TABLE, recipeIndexer,recipe);
+                }
 
-                var createRecipe = function (recipe) {
-                    var newPostKey = firebase.database().ref().child('foodfiddler/recipes').push().key;
-                    var updates = {};
-                    updates['foodfiddler/recipes/' + newPostKey] = recipe;
-                    recipe.id = newPostKey;
-                    return httpUtil.firebaseTo$qPromise(firebase.database().ref().update(updates));
-                };
-
-                var saveRecipe = function (recipe) {
-                    return httpUtil.firebaseTo$qPromise(firebase.database().ref('foodfiddler/recipes/' + recipe.id).set(recipe));
-                };
-
-
-                var deleteRecipe = function (recipe) {
-                    return httpUtil.firebaseTo$qPromise(firebase.database().ref('foodfiddler/recipes/' + recipe.id).remove());
-                };
-
-                var getIngredients = function () {
+                function getIngredients() {
                     return $http.get('common/data/ingredients.json');
-                };
+                }
 
                 /**
                  * guessIngredientIconTag
@@ -67,14 +42,14 @@
                     var choppyName = ingredientName.replace(
                         /\scups?|tbsp|\slbs?|tsp|gallons?|\d+\/?\d?|,|\(|\)|inch|inches|medium|large|small|\sof\s|\sin\s|\sif\s|\sor\s/g,
                         ''
-                        ), rando = ['SPOON', 'SOUR_CRM', 'SHORT', 'POW_SUGAR'],
+                    ), rando = ['SPOON', 'SOUR_CRM', 'SHORT', 'POW_SUGAR'],
                         bestMatch = {
                             tag: rando[Math.floor(Math.random() * rando.length)],
                             rating: choppyName.length / 2,
                             inThere: false
                         };
 
-                    if(!ingredients) {
+                    if (!ingredients) {
                         return bestMatch.tag;
                     }
 
@@ -84,55 +59,13 @@
                             totalRating = (rating + (-1 * (inThere / 30)));
 
                         if (totalRating < bestMatch.rating) {
-                            bestMatch = {tag: ingredients[i].tag, rating: totalRating};
+                            bestMatch = { tag: ingredients[i].tag, rating: totalRating };
                         }
                     }
                     return bestMatch.tag;
                 }
 
-                var evaluateCache = function (recipe, ACTION) {
-                    if (cacheBuster[ACTION] instanceof Function) {
-                        cacheBuster[ACTION](recipe);
-                    }
-                };
-
-                var cacheBuster = {
-                    //DELETE
-                    '-1': function (recipe) {
-                        cacheBuster.check(function () {
-                            recipes.splice(recipeHashIndexer[recipe.id], 1);
-                            var tmpHash = {};
-                            angular.forEach(recipes, function (value, key) {
-                                tmpHash[key] = i;
-                                i++;
-                            });
-                            recipeHashIndexer = tmpHash;
-                        });
-                    },
-                    //UPDATE
-                    '0': function (recipe) {
-                        cacheBuster.check(function () {
-                            recipes[recipeHashIndexer[recipe.id]] = angular.copy(recipe);
-                        });
-                    },
-                    //ADD
-                    '1': function (recipe) {
-                        cacheBuster.check(function () {
-                            recipes.push(recipe);
-                            recipeHashIndexer[recipe.id] = recipes.length - 1;
-                        });
-                    },
-                    check: function (callback) {
-                        if (recipeHashIndexer && recipes && recipeHashIndexer[recipes.length - 1]) {
-                            callback();
-                        } else {
-                            recipes = undefined;
-                        }
-                    }
-                };
-
                 return {
-                    evaluateCache: evaluateCache,
                     getRecipes: getRecipes,
                     getRecipeById: getRecipeById,
                     createRecipe: createRecipe,

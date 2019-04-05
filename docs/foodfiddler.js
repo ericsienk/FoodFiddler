@@ -75,7 +75,7 @@
         };
 
         var isLoggedIn = function (user, signout) {
-            if (user !== undefined || signout) {
+            if (user || signout) {
                 if (signout) {
                     $rootScope.user = {};
                     $rootScope.user.displayName = 'Account';

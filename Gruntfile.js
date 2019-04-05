@@ -1,3 +1,15 @@
+/**
+ * Using grunt in command line
+ * 
+ * check if you have grunt cli installed
+ * grunt --version
+ * 
+ * if grunt-cli is not installed, install globally
+ * npm install -g grunt-cli
+ * 
+ * run desired task (see registered tasks at bottom of this file)
+ * grunt develop
+ */
 module.exports = function (grunt) {
     'use strict';
     require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
@@ -116,8 +128,11 @@ module.exports = function (grunt) {
         }
     });
 
+    // runs web server and reloads browser as you code
     grunt.registerTask('develop', ['connect:server', 'watch']);
+    // creates a css and font file based of svg in icons folder
     grunt.registerTask('create icons', ['run']);
+    // compresses project files into dist (production distribution) folder
     grunt.registerTask('package', [
         'clean:dist',
         'html2js:dist',
@@ -128,5 +143,6 @@ module.exports = function (grunt) {
         'copy:assests',
         'cachebreaker:prod'
     ]);
+    // calls package task and then pushes the dist files to github pages
     grunt.registerTask('go live!', ['package', 'gh-pages', 'clean:ghp'])
 };

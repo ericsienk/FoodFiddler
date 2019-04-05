@@ -4,20 +4,6 @@
     angular.module('foodfiddler.service.util', [])
         .factory('util', [function () {
             return {
-                objectToArray: function (obj, keyName, indexerObj) {
-                    var tmpArray = [], i = 0;
-                    if (!indexerObj) {
-                        indexerObj = {};
-                    }
-                    angular.forEach(obj, function (value, key) {
-                        var tmp = (typeof obj[key] == 'object') ? obj[key] : {};
-                        tmp[keyName] = key;
-                        tmpArray.push(tmp);
-                        indexerObj[key] = i;
-                        i++;
-                    });
-                    return tmpArray;
-                },
                 decodeNewLines: function (s) {
                     return (s ? s.replace(/(\r\n|\n|\r)/gm, "<br />") : s);
                 },
@@ -87,6 +73,67 @@
                     }
 
                     return confidence;
+                },
+                arrayFromMap: function (map, keyToPropertyName) {
+                    return Object.keys(map).map(function (key) {
+                        var o = map[key];
+                        if (typeof(o) === 'object') {
+                            o[keyToPropertyName] = key;
+                        } 
+    
+                        return o;
+                    });
+                },
+                getHashIndexer: function () {
+                    return {
+                        list: [],
+                        indexer: {},
+                        initialized: false,
+                        initialize: function (firebaseObjectList) {
+                            var self = this,
+                                i = 0;
+                            
+                            this.list = [];
+                            this.indexer = {};
+                            angular.forEach(firebaseObjectList, function (value, key) {
+                                var tmp = firebaseObjectList[key];
+                                tmp.id = key;
+                                self.list.push(tmp);
+                                self.indexer[key] = i;
+                                i++;
+                            });
+
+                            this.initialized = true;
+                        },
+                        exists: function (id) {
+                            return angular.isDefined(this.indexer[id]) && (this.list.length > this.indexer[id]);
+                        },
+                        get: function (id) {
+                            if (this.exists) {
+                                return this.list[this.indexer[id]];
+                            }
+                        },
+                        remove: function (item) {
+                            if (this.exists(item.id)) {
+                                this.list.splice(this.indexer[item.id], 1);
+                                var tmpIndexer = {};
+                                                          
+                                this.list.forEach(function (item, index) {
+                                    tmpIndexer[item.id] = index;
+                                });
+
+                                this.indexer = tmpIndexer;
+                            }
+                        },
+                        merge: function (item) {
+                            if (!this.exists(item.id)) {
+                                this.list.push(angular.copy(item));
+                                this.indexer[item.id] = this.list.length - 1;
+                            } else {
+                                this.list[this.indexer[item.id]] = angular.copy(item);
+                            }
+                        }
+                    }
                 }
             };
         }]);
