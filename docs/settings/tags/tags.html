@@ -5,23 +5,27 @@
     <table class="table">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Recipes</th>
+                <th colspan="2"></th>
             </tr>
         </thead>
         <tbody>
             <tr>
+                <td></td>
                 <td><input class="form-control" ng-model="controls.newTag.name"/> </td>
                 <td></td>
                 <td><button class="btn btn-success" ng-click="createTag(controls.newTag)">Create</button></td>
                 <td></td>
             </tr>
             <tr ng-repeat="tag in tags track by $index">
+                <td>{{tag.id}}</td>
                 <td><input class="form-control" ng-model="tag.name"/></td>
                 <td>
-                    <a ng-repeat="(key, value) in tag.recipes" target="_blank" href="/#/recipe/{{key}}">
-                        {{key}}
-                    </a>
+                    <div ng-repeat="(key, value) in tag.recipes">
+                        <a target="_blank" href="/#/recipe/{{key}}">{{key}}</a>
+                    </div>
                 </td>
                 <td><button class="btn btn-danger" ng-click="deleteTag(tag)" type="button">Delete</button></td>
                 <td><button class="btn btn-primary" ng-click="updateTag(tag)" type="button">Update</button></td>

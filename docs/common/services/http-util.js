@@ -14,11 +14,11 @@
             }
 
             /**
-             * firebaseBatchMerge
+             * firebaseBatch
              * allows chaining multiple create or updates
              * @returns {{callStack: {}, itemStack: Array, merge: httpUtil.merge, execute: httpUtil.execute}}
              */
-            function firebaseBatchMerge() {
+            function firebaseBatch() {
                 return {
                     callStack: {},
                     mergeStack: [],
@@ -207,7 +207,7 @@
 
             return {
                 mockPromise: mockPromise,
-                firebaseBatchMerge: firebaseBatchMerge,
+                firebaseBatch: firebaseBatch,
                 firebaseGet: firebaseGet,
                 optimisticGet: optimisticGet,
                 firebaseGetById: firebaseGetById,

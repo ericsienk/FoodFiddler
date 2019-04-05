@@ -14,15 +14,15 @@
                 function getRecipeById(id) {
                     return httpUtil.firebaseGetById(BASE_TABLE, recipeIndexer, id).then(function(response) {
                         // transform list of tag id's to full tag objects
-                        response.data.tags = response.data.tags || [];
-                        response.data.tags.forEach(function(tag, index) {
-                            if(typeof(tag) === 'string') {
-                                response.data.tags[index] = {id: tag};
+                        response.data.tags = response.data.tags || {};
+                        angular.forEach(response.data.tags, function(value, key) {
+                            if(typeof(value) !== 'object') {
+                                response.data.tags[key] = {id: value};
                                 // async replace
                                 httpUtil.optimisticGet(
-                                    ffTagsService.getRecipeTag(tag),
+                                    ffTagsService.getRecipeTag(key),
                                     response.data.tags,
-                                    index
+                                    key
                                 );
                             }
                         });
@@ -32,11 +32,19 @@
                 }
 
                 function normalizeRecipe(recipe) {
-                    var tmp = angular.copy(recipe);
-                    tmp.tags = tmp.tags || [];
-                    tmp.tags = tmp.tags.map(function(tag) {
-                        return (tag && typeof(tag) !== 'string') ? tag.id : tag;
+                    var tmp = angular.copy(recipe),
+                        tmpTags = {};
+
+                    tmp.tags = tmp.tags || {};
+                    angular.forEach(tmp.tags, function(value, key) {
+                        if(typeof(value) === 'object') {
+                            tmpTags[key] = true;
+                        } else {
+                            tmpTags[key] = value;
+                        }
                     });
+
+                    tmp.tags = tmpTags;
                     return tmp;
                 }
 
@@ -51,9 +59,8 @@
                 }
 
                 function saveRecipe(recipe) {
-                    var prepped = normalizeRecipe(recipe);
-                    prepped.tags= ['testTag'];
-                    var tagUpdates = recipeIndexer.diff(prepped, 'tags', normalizeRecipe);
+                    var prepped = normalizeRecipe(recipe),
+                        tagUpdates = recipeIndexer.diff(prepped, 'tags', normalizeRecipe);
 
                     return httpUtil.firebaseUpdate(BASE_TABLE, recipeIndexer, prepped).then(function() {
                         return ffTagsService.updateTagRecipes(recipe, tagUpdates).then(function() {

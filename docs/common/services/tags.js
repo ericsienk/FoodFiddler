@@ -32,16 +32,16 @@
                     });
                 },
                 updateTagRecipes: function(recipe, tagIndexDiff) {
-                    var batch = httpUtil.firebaseBatchMerge(),
+                    var batch = httpUtil.firebaseBatch(),
                         affectedTags = [];
                     tagIndexDiff.merges.forEach(function(diff) {
-                        affectedTags.push(diff.value);
-                        batch.merge(BASE_TABLE + diff.value + '/recipes/', null, recipe.id);
+                        affectedTags.push(diff.key);
+                        batch.merge(BASE_TABLE + diff.key + '/recipes/', null, recipe.id);
                     });
 
                     tagIndexDiff.deletes.forEach(function(diff) {
-                        affectedTags.push(diff.value);
-                        batch.delete(BASE_TABLE + diff.value + '/recipes/', null, recipe.id);
+                        affectedTags.push(diff.key);
+                        batch.delete(BASE_TABLE + diff.key + '/recipes/', null, recipe.id);
                     });
 
                     return batch.execute().then(function(response) {
@@ -52,7 +52,7 @@
                         return response;
                     });
                 },
-                createTag: function (tag, onSetRecipeRel) {
+                createTag: function (tag) {
                     this.normalizeTag(tag);
                     return httpUtil.firebaseCreate(BASE_TABLE, tagIndexer, tag);
                 },
@@ -60,7 +60,13 @@
                     return httpUtil.firebaseUpdate(BASE_TABLE, tagIndexer, tag);
                 },
                 deleteTag: function (tag) {
-                    return httpUtil.firebaseDelete(BASE_TABLE, tagIndexer, tag);
+                    return httpUtil.firebaseDelete(BASE_TABLE, tagIndexer, tag).then(function(){
+                        var batch = httpUtil.firebaseBatch();
+                        angular.forEach(tag.recipes, function(value, key) {
+                            batch.delete('foodfiddler/recipes/' + key + '/tags/', null, tag.id);
+                        });
+                        return batch.execute();
+                    });
                 }
             };
         }]);
