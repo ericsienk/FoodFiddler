@@ -93,10 +93,13 @@
                 },
                 arrayFromMap: function (map, keyToPropertyName) {
                     return Object.keys(map).map(function (key) {
-                        var o = map[key];
-                        if (typeof(o) === 'object') {
+                        var o;
+                        if (keyToPropertyName) {
+                            o = {};
                             o[keyToPropertyName] = key;
-                        } 
+                        } else {
+                            o = map[key];
+                        }
     
                         return o;
                     });
