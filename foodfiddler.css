@@ -113,6 +113,10 @@
     padding:18px;
 }
 
+.padding36px {
+    padding: 36px;
+}
+
 .marginLeftRight10Percent {
     margin: 0 10%;
 }
@@ -144,10 +148,11 @@
     color: #6C6D70;
 }
 .item-container {
-    border-radius: 3px;
+    border-radius: 26px;
     margin: 18px;
     padding: 18px;
     color: white;
+    overflow: hidden;
 }
 
 .navbar-collapse.collapse {
