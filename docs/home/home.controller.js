@@ -9,13 +9,15 @@ angular.module('foodfiddler.home', ['ngRoute'])
         });
     }])
     .controller('homeCtrl', ['$scope', 'ffRecipeService', 'ffTagsService', function ($scope, ffRecipeService, ffTagsService) {
+        $scope.loaders = { page: true };
+
         function onRetrieveRecipes(recipes) {
             $scope.filteredRecipes = recipes;
             $scope.loaders.page = false;
         }
 
         $scope.getRecipes = function (tab) {
-            $scope.loaders.page = false;
+            $scope.loaders.page = true;
             $scope.selected = tab;
             $scope.filteredRecipes = [];
 
@@ -29,7 +31,6 @@ angular.module('foodfiddler.home', ['ngRoute'])
         };
 
         (function initialize() {
-            $scope.loaders = { page: true };
             $scope.getRecipes('Recent');
         })();
     }]);
