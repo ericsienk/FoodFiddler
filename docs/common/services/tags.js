@@ -31,26 +31,20 @@
                         return response;
                     });
                 },
-                updateTagRecipes: function(recipe, tagIndexDiff) {
-                    var batch = httpUtil.firebaseBatch(),
-                        affectedTags = [];
-                    tagIndexDiff.merges.forEach(function(diff) {
-                        affectedTags.push(diff.key);
-                        batch.merge(BASE_TABLE + diff.key + '/recipes/', null, recipe.id);
+                getTagRecipesBatch: function (recipeId, tagIndexDiff) {
+                    var batch = httpUtil.firebaseBatch();
+                    
+                    tagIndexDiff.updates.forEach(function(diff) {
+                        batch.update(BASE_TABLE + diff.key + '/recipes/' + recipeId)
+                        batch.onExecute(function () { tagIndexer.stale(diff.key); });
                     });
 
                     tagIndexDiff.deletes.forEach(function(diff) {
-                        affectedTags.push(diff.key);
-                        batch.delete(BASE_TABLE + diff.key + '/recipes/', null, recipe.id);
+                        batch.delete(BASE_TABLE + diff.key + '/recipes/' + recipeId);
+                        batch.onExecute(function () { tagIndexer.stale(diff.key); });
                     });
 
-                    return batch.execute().then(function(response) {
-                        affectedTags.forEach(function(tag) {
-                            tagIndexer.remove({id: tag});
-                        });
-
-                        return response;
-                    });
+                    return batch;
                 },
                 createTag: function (tag) {
                     this.normalizeTag(tag);
@@ -71,34 +65,3 @@
             };
         }]);
 }(angular));
-
-/**
-
-
- GIVEN
-
- tags
-
- 123: { recipes: { xxx: true, zzz: true } }
- 456: { recipes: {xxx: true, yyyy: true } }
- 789: { recipes: {}}
-
- recipes
-
- xxx: {name:banana, tags: {123: true, 456: true}
- tag: {name: dessert, id:123}
-
-
- WHEN
-
- update recipe and remove tag & add tag
-  xxx: {name:orange, tags: [123, 789]
-
-
-THEN
-
-update recipe
-    update reference to tags
-update tag
-
- */

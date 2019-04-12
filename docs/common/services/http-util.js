@@ -15,53 +15,43 @@
 
             /**
              * firebaseBatch
-             * allows chaining multiple create or updates
-             * @returns {{callStack: {}, itemStack: Array, merge: httpUtil.merge, execute: httpUtil.execute}}
+             * allows chaining multiple updates
              */
             function firebaseBatch() {
                 return {
                     callStack: {},
-                    mergeStack: [],
-                    deleteStack: [],
-                    merge: function (location, hashIndexer, item) {
-                        var preparedItem = true,
-                            id;
-
-                        if (typeof(item) !== 'string') {
-                            if (!item.id) {
-                                item.id = getNewFirebaseKey(location);
-                            }
-
-                            preparedItem = angular.copy(item);
-                            id = item.id;
-                            delete preparedItem['id'];
-                        } else {
-                            id = item;
-                        }
-
-                        this.callStack[location + id] = preparedItem;
-                        this.mergeStack.push({indexer: hashIndexer, item: item});
+                    callbackStack: [],
+                    onExecute: function (onExecute) {
+                        this.callbackStack.push(onExecute);
                         return this;
                     },
-                    delete: function (location, hashIndexer, item) {
-                        var id = typeof(item) === 'string' ? item : item.id;
-                        this.callStack[location + id] = null;
-                        this.deleteStack.push({indexer: hashIndexer, item: item});
+                    mergeBatch: function (firebaseBatch) {
+                        angular.extend(this.callStack, firebaseBatch.callStack);
+                        this.callbackStack = this.callbackStack.concat(firebaseBatch.callbackStack);
+                        return this;
+                    },
+                    create: function (parentLocation, value) {
+                        var copy = angular.copy(value),
+                            id = getNewFirebaseKey(parentLocation);
+                        value.id = id;
+                        this.callStack[parentLocation + id] = copy;
+                        return this;
+                    },
+                    update: function (location, value) {
+                        this.callStack[location] = value;
+                        return this;
+                    },
+                    delete: function (location) {
+                        this.callStack[location] = null;
                         return this;
                     },
                     execute: function () {
                         var self = this;
-                        return firebaseCall(firebase.database().ref().update(self.callStack)).then(function () {
-                            var items = [];
-                            self.mergeStack.forEach(function (i) {
-                                if (i.indexer) {
-                                    i.indexer.merge(i.item);
-                                }
-                                items.push(i.item);
+                        return firebaseCall(firebase.database().ref().update(self.callStack)).then(function (response) {
+                            self.callbackStack.forEach(function (cb) {
+                                cb(response);
                             });
-                            return {data: items};
-                        })
-
+                        });
                     }
                 }
             }
@@ -110,17 +100,12 @@
              * @param {*} location
              * @param {*} hashIndexer
              * @param {*} item
-             * @param {*} batchUpdate
              */
-            function firebaseUpdate(location, hashIndexer, item, batchUpdate) {
+            function firebaseUpdate(location, hashIndexer, item) {
                 var preparedItem = angular.copy(item);
                 delete preparedItem['id'];
                 var updates = {};
                 updates[location + item.id] = preparedItem;
-                if(batchUpdate) {
-                    // merge any batch updates
-                    angular.extend(updates, batchUpdate);
-                }
 
                 return firebaseCall(firebase.database().ref().update(updates)).then(function () {
                     if (hashIndexer) {
@@ -152,11 +137,14 @@
              */
             function firebaseGet(location, hashIndexer) {
                 if (hashIndexer.initialized) {
-                    return mockPromise(hashIndexer.list);
+                    return mockPromise(hashIndexer.getList(function onStaleItem(id, list, index) {
+                        // refresh stale data
+                        optimisticGet(firebaseGetById(location, hashIndexer, id), list, index);
+                    }));
                 } else {
                     return firebaseCall(firebase.database().ref(location).once('value')).then(function (response) {
                         hashIndexer.initialize(response.data);
-                        return mockPromise(hashIndexer.list);
+                        return mockPromise(hashIndexer.getList());
                     });
                 }
             }
@@ -199,9 +187,9 @@
                 return deferred.promise;
             }
 
-            function mockPromise(obj) {
+            function mockPromise(obj, deepCopy) {
                 var deferred = $q.defer();
-                deferred.resolve({data: angular.copy(obj)});
+                deferred.resolve({data: (deepCopy ? angular.copy(obj) : obj)});
                 return deferred.promise;
             }
 

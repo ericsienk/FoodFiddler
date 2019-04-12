@@ -123,15 +123,17 @@ angular.module('foodfiddler.edit', ['ngRoute'])
                         return r;
                     }
                 },
-                onResponse: function (data) {
-                    var path = ACTION >= 0 ? ('/recipe/' + $scope.recipe.id) : '/home';
-                    $location.path(path);
+                onResponse: function (recipe) {
+                    $timeout(function () {
+                        // TODO more elegant modal
+                        $('.modal-backdrop.fade.show').remove();
+                        $('body').removeClass('modal-open');
+                        $('body').css('padding', 0);
+                        var path = ACTION >= 0 ? ('/recipe/' + recipe.id) : '/home';
+                        $location.path(path);
+                    });
                 },
                 delete: function () {
-                    $timeout(function () {
-                        $('#chickenModal').modal('hide');
-                    });
-
                     ACTION = -1;
                     ffRecipeService.deleteRecipe($scope.recipe).then($scope.recipeActions.onResponse);
                 },

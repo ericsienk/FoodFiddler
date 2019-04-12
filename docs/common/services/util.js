@@ -103,52 +103,86 @@
                 },
                 getHashIndexer: function () {
                     return {
-                        list: [],
                         indexer: {},
+                        staleIndexer: {},
                         initialized: false,
+                        /**
+                         * initialize
+                         * caches firebase list and sets each object key to id property
+                         * {123: {...}} => [{id:123}, ...]
+                         * @param {*} firebaseObjectList 
+                         */                        
                         initialize: function (firebaseObjectList) {
-                            var self = this,
-                                i = 0;
-                            
-                            this.list = [];
+                            var self = this;
+
                             this.indexer = {};
+                            this.staleIndexer = {};
                             angular.forEach(firebaseObjectList, function (value, key) {
-                                var tmp = firebaseObjectList[key];
+                                var tmp = angular.copy(value);
                                 tmp.id = key;
-                                self.list.push(tmp);
-                                self.indexer[key] = i;
-                                i++;
+                                self.indexer[key] = tmp;
                             });
 
                             this.initialized = true;
                         },
+                        // checks if id is cached and not stale
                         exists: function (id) {
-                            return angular.isDefined(this.indexer[id]) && (this.list.length > this.indexer[id]);
+                            return angular.isDefined(this.indexer[id]);
                         },
-                        get: function (id) {
-                            if (this.exists) {
-                                return this.list[this.indexer[id]];
+                        // removes object from cache and sets as stale if exists
+                        stale: function (id) {
+                            if (this.exists(id)) {
+                                // save deep copy
+                                this.staleIndexer[id] = angular.copy(this.indexer[id]);
+                                // delete from main indexer
+                                delete this.indexer[id];
                             }
                         },
+                        // returns object from cache if exists
+                        get: function (id) {
+                            if (this.exists(id)) {
+                                return angular.copy(this.indexer[id]);
+                            }
+                        },
+                        /**
+                         * getList
+                         * returns a list of items from cache
+                         * @param {*} onStaleItem function (
+                         *      staleItem: object {id},
+                         *      list: reference to list that was returned,
+                         *      index: index where stale item exits at the time of execution
+                         * )
+                         * @returns [{*}] list of cached items
+                         */
+                        getList: function (onStaleItem) {
+                            var list = angular.copy(Object.values(this.indexer));
+
+                            if (onStaleItem instanceof Function) {
+                                Object.keys(this.staleIndexer).forEach(function (item) {
+                                    var staleItem = { id: item.id };
+                                    list.push({ id: item.id });
+                                    // provide callback to dynamically set reference
+                                    onStaleItem(staleItem, list, list.length - 1);
+                                });
+                            }
+
+                            return list;
+                        },
+                        // removes item from cache if exists
                         remove: function (item) {
                             if (this.exists(item.id)) {
-                                this.list.splice(this.indexer[item.id], 1);
-                                var tmpIndexer = {};
-                                                          
-                                this.list.forEach(function (item, index) {
-                                    tmpIndexer[item.id] = index;
-                                });
-
-                                this.indexer = tmpIndexer;
+                                delete this.indexer[item.id];
+                            } else if (angular.isDefined(this.staleIndexer[item.id])) {
+                                delete this.indexer[item.id];
                             }
                         },
+                        // adds or updates cache based on item.id is defined
                         merge: function (item) {
-                            if (!this.exists(item.id)) {
-                                this.list.push(angular.copy(item));
-                                this.indexer[item.id] = this.list.length - 1;
-                            } else {
-                                this.list[this.indexer[item.id]] = angular.copy(item);
+                            if (this.staleIndexer[item.id]) {
+                                delete this.staleIndexer[item.id];
                             }
+
+                            this.indexer[item.id] = angular.copy(item);
                         },
                         /**
                          * diff
@@ -156,36 +190,31 @@
                          * returns an object of merges: [], deletes: []
                          * these lists contain {key: value} (key and value will be same for unique array items)
                          * @param itemToCompare
+                         * @param id
                          * @param propertyPath
-                         * @param onGetItem
-                         * @returns {{deletes: Array, merges: Array}}
+                         * @returns {{deletes: Array, upates: Array, creates: Array}}
                          */
-                        diff: function(itemToCompare, propertyPath, onGetItem) {
+                        diff: function(itemToCompare, id, propertyPath) {
                             var compare = accessProperty(itemToCompare, propertyPath),
-                                updates = {
+                                changes = {
                                     deletes: [],
-                                    merges: []
-                                };
-
-                            var tmpCompare = formObject(compare, true);
-
-                            var item = this.get(itemToCompare.id);
+                                    updates: []
+                                },
+                                tmpCompare = formObject(compare, true),
+                                item = this.get(id);
+                            
                             if(item) {
-                                if(onGetItem instanceof Function) {
-                                    item = onGetItem(angular.copy(item));
-                                }
-
                                 angular.forEach(formObject(accessProperty(item, propertyPath)), function(value, key) {
                                     if(!angular.isDefined(tmpCompare[key])) {
                                         // deleted
-                                        updates.deletes.push({
+                                        changes.deletes.push({
                                             key: key,
                                             value: value
                                         });
                                     } else {
                                         if(value != tmpCompare[key]) {
                                             // updated
-                                            updates.merges.push({
+                                            changes.updates.push({
                                                 key: key,
                                                 value: value
                                             });
@@ -197,13 +226,13 @@
 
                             // all properties left are added differences
                             angular.forEach(tmpCompare, function(value, key) {
-                                updates.merges.push({
+                                changes.updates.push({
                                     key: key,
                                     value: value
                                 });
                             });
 
-                            return updates;
+                            return changes;
                         }
                     }
                 }
