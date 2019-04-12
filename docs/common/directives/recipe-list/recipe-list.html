@@ -1,5 +1,7 @@
-<ul class="dynamic-grid" angular-grid="recipes" ag-grid-width="273" ag-gutter-size="30" ag-angular-grid-id="gallery">
-    <li style="transition:none !important; list-style:none;" ng-repeat="recipe in recipes track by recipe.id">
-        <div recipe-preview recipe="recipe" ng-click="viewRecipe(recipe)"></div>
-    </li>
-</ul>
+<div>
+    <ul class="dynamic-grid" angular-grid="recipes" ag-grid-width="273" ag-gutter-size="30" ag-angular-grid-id="gallery">
+        <li style="transition:none !important; list-style:none;" ng-repeat="recipe in recipes track by recipe.id">
+            <div recipe-preview recipe="recipe"></div>
+        </li>
+    </ul>
+</div>

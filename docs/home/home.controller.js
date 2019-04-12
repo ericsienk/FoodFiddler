@@ -7,29 +7,29 @@ angular.module('foodfiddler.home', ['ngRoute'])
             controller: 'homeCtrl',
             tabName: 'home'
         });
-
     }])
-    .controller('homeCtrl', ['$scope', '$filter', '$rootScope', 'ffRecipeService', '$http', function ($scope, $filter, $rootScope, ffRecipeService, $http) {
-        $scope.loaders = {page: true};
-        ffRecipeService.getRecipes().then(function (response) {
-            $scope.recipes = response.data;
-            $scope.getRecipes('Meals');
-
+    .controller('homeCtrl', ['$scope', 'ffRecipeService', 'ffTagsService', function ($scope, ffRecipeService, ffTagsService) {
+        function onRetrieveRecipes(recipes) {
+            $scope.filteredRecipes = recipes;
             $scope.loaders.page = false;
-        });
+        }
+
         $scope.getRecipes = function (tab) {
+            $scope.loaders.page = false;
             $scope.selected = tab;
-            $scope.filteredRecipes = $scope.recipes.filter(function (recipe) {
-                if (tab == "Desserts") {
-                    return recipe.ingredients.find(function (ingredient) {
-                        return ingredient.name == "sugar";
-                    });
-                }
-                else if (tab == "Meals") {
-                    return recipe.ingredients.find(function (ingredient) {
-                        return ingredient.name != "sugar";
-                    });
-                }
-            });
+            $scope.filteredRecipes = [];
+
+            if(tab === 'Recent') {
+                ffRecipeService.getRecentRecipes().then(onRetrieveRecipes)
+            } else  if(tab === 'Desserts') {
+                ffRecipeService.getRecipesByTag(ffTagsService.CONSTANTS.DESSERT).then(onRetrieveRecipes);
+            } else if(tab === 'Meals') {
+                ffRecipeService.getRecipesByTag(ffTagsService.CONSTANTS.MEAL).then(onRetrieveRecipes);
+            }
         };
+
+        (function initialize() {
+            $scope.loaders = { page: true };
+            $scope.getRecipes('Recent');
+        })();
     }]);

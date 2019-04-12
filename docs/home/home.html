@@ -1,8 +1,9 @@
 <div data-ng-if="!loaders.page" class="row" style="margin: 0">
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <a class="nav-item nav-link active" ng-class="{active: selected=='Meals'}" ng-click="getRecipes('Meals')" aria-controls="nav-home" aria-selected="true">Meals</a>
+        <a class="nav-item nav-link active" ng-class="{active: selected=='Recent'}" ng-click="getRecipes('Recent')" aria-controls="nav-home" aria-selected="true">Recent</a>
+        <a class="nav-item nav-link" ng-class="{active: selected=='Meals'}" ng-click="getRecipes('Meals')" aria-controls="nav-home" aria-selected="true">Meals</a>
         <a class="nav-item nav-link" ng-class="{active: selected=='Desserts'}" ng-click="getRecipes('Desserts')" aria-controls="nav-profile" aria-selected="false">Desserts</a>
-        <a class="nav-item nav-link"  ng-class="{active: selected=='By Ingredient'}" ng-click="getRecipes('By Ingredient')" aria-controls="nav-contact" aria-selected="false">By Ingredient</a>
+        <!--<a class="nav-item nav-link"  ng-class="{active: selected=='By Ingredient'}" ng-click="getRecipes('By Ingredient')" aria-controls="nav-contact" aria-selected="false">By Ingredient</a>-->
     </div>
     <div class="col-md-12 padding18px backgroundWhite">
         <recipe-list style="margin-left: -4px" recipes="filteredRecipes" search-text="$root.searchText" authorized-function="$root.authorized"></recipe-list>

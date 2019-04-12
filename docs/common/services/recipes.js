@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('foodfiddler.service.recipes', [])
-        .factory('ffRecipeService', ['$http', 'util', 'httpUtil', 'ffTagsService', function ($http, util, httpUtil, ffTagsService) {
+        .factory('ffRecipeService', ['$http', '$q', 'util', 'httpUtil', 'ffTagsService', function ($http, $q, util, httpUtil, ffTagsService) {
             var recipeIndexer = util.getHashIndexer(),
                 ingredients,
                 BASE_TABLE = 'foodfiddler/recipes/';
@@ -63,6 +63,7 @@
             }
 
             function saveRecipe(recipe) {
+                recipe.tags = {'-Lbimir6S6MCjXEdEObd': true};
                 var prepped = normalizeRecipe(recipe),
                     recipeTagDiffIndexer = recipeIndexer.diff(prepped, recipe.id, 'tags');
 
@@ -128,6 +129,26 @@
                 return bestMatch.tag;
             }
 
+            function getRecipesByTag(tag) {
+                return ffTagsService.getTagById(tag).then(function(response) {
+                    return $q.all(
+                        Object.keys(response.data.recipes).map(function(recipeId) {
+                            return getRecipeById(recipeId);
+                        })
+                    ).then(function(responses) {
+                        return responses.map(function(response) {
+                            return response.data;
+                        })
+                    });
+                });
+            }
+
+            function getRecentRecipes() {
+                return getRecipes().then(function(response) {
+                    return response.data.reverse();
+                });
+            }
+
             return {
                 getRecipes: getRecipes,
                 getRecipeById: getRecipeById,
@@ -135,7 +156,9 @@
                 saveRecipe: saveRecipe,
                 deleteRecipe: deleteRecipe,
                 getIngredients: getIngredients,
-                guessIngredientIconTag: guessIngredientIconTag
+                guessIngredientIconTag: guessIngredientIconTag,
+                getRecipesByTag: getRecipesByTag,
+                getRecentRecipes: getRecentRecipes
             };
         }]);
 }(angular));

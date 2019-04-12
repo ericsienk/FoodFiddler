@@ -4,9 +4,14 @@
     angular.module('foodfiddler.service.tags', [])
         .factory('ffTagsService', ['httpUtil', 'util', function (httpUtil, util) {
             var tagIndexer = util.getHashIndexer(),
-                BASE_TABLE = 'foodfiddler/tags/';
+                BASE_TABLE = 'foodfiddler/tags/',
+                CONSTANTS = {
+                    DESSERT: '-LbimheT8m4W5cqVcFnC',
+                    MEAL: '-Lbimir6S6MCjXEdEObd'
+                };
 
             return {
+                CONSTANTS: CONSTANTS,
                 normalizeTag: function (tag) {
                     var map = {};
                     tag.recipes = (tag.recipes || map);
@@ -25,6 +30,9 @@
                 getTags: function () {
                     return httpUtil.firebaseGet(BASE_TABLE, tagIndexer);
                 },
+                getTagById: function(id) {
+                    return httpUtil.firebaseGetById(BASE_TABLE, tagIndexer, id);
+                },
                 getRecipeTag: function(id) {
                     return httpUtil.firebaseGetById(BASE_TABLE, tagIndexer, id).then(function(response) {
                         delete response.data['recipes'];
@@ -35,7 +43,7 @@
                     var batch = httpUtil.firebaseBatch();
                     
                     tagIndexDiff.updates.forEach(function(diff) {
-                        batch.update(BASE_TABLE + diff.key + '/recipes/' + recipeId)
+                        batch.update(BASE_TABLE + diff.key + '/recipes/' + recipeId, true);
                         batch.onExecute(function () { tagIndexer.stale(diff.key); });
                     });
 

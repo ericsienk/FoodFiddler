@@ -10,16 +10,7 @@
                     authorizedFunction : '='
                 },
                 replace: true,
-                template: '<div ng-include="\'common/directives/recipe-list/recipe-list.html\'"></div>',
-                link: function($scope, $element, $attrs) {
-                    $scope.viewRecipe = function(recipe) {
-                        $location.path('recipe/' + recipe.id);
-                    };
-
-                    $scope.editRecipe = function(recipe) {
-                        $location.path(recipe.id + '/edit');
-                    };
-                }
+                templateUrl: 'common/directives/recipe-list/recipe-list.html'
             });
         }]);
 }(angular));
