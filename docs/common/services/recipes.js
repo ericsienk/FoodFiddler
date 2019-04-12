@@ -144,6 +144,7 @@
             }
 
             function getRecentRecipes() {
+                // TODO store timestamps and order by most recent
                 return getRecipes().then(function(response) {
                     return response.data.reverse();
                 });

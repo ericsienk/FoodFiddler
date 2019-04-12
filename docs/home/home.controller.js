@@ -21,7 +21,7 @@ angular.module('foodfiddler.home', ['ngRoute'])
 
             if(tab === 'Recent') {
                 ffRecipeService.getRecentRecipes().then(onRetrieveRecipes)
-            } else  if(tab === 'Desserts') {
+            } else if(tab === 'Desserts') {
                 ffRecipeService.getRecipesByTag(ffTagsService.CONSTANTS.DESSERT).then(onRetrieveRecipes);
             } else if(tab === 'Meals') {
                 ffRecipeService.getRecipesByTag(ffTagsService.CONSTANTS.MEAL).then(onRetrieveRecipes);
