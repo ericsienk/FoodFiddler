@@ -63,7 +63,6 @@
             }
 
             function saveRecipe(recipe) {
-                recipe.tags = {'-Lbimir6S6MCjXEdEObd': true};
                 var prepped = normalizeRecipe(recipe),
                     recipeTagDiffIndexer = recipeIndexer.diff(prepped, recipe.id, 'tags');
 
