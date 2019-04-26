@@ -285,6 +285,17 @@ body {
     text-align: center !important;
 }
 
+.helper-text {
+    background: #ffffff99;
+    color: black;
+    padding: 7px;
+    border-radius: 7px;
+    font-style: italic;
+    vertical-align: middle;
+    text-transform: initial;
+    font-weight: bold;
+}
+
 #accountDropdown {
     border: none;
     background: none;

@@ -40,6 +40,13 @@ angular.module('foodfiddler.edit', ['ngRoute'])
                 parseLine(splitIngredientLines);
             };
 
+            $scope.setImgAlignY = function(percentage) {
+                // range between 0 and 100, default is 50
+                var currentAlignY = isNaN($scope.recipe.imgAlignY) ? 50 : $scope.recipe.imgAlignY;
+                $scope.recipe.imgAlignY = Math.min(Math.max(currentAlignY  + percentage, 0), 100);
+                $scope.jumbotronStyle = {backgroundPositionY: $scope.recipe.imgAlignY + '%'};
+            };
+
             function parseLine(lines) {
                 angular.forEach(lines, function (value) {
                         var ingredientLine = value.match(/^(\S+? \S+?) ([\s\S]+?)$/),

@@ -28,6 +28,9 @@
                             }
 
                             element[0].style.background = 'url("' + url + '") ' + (attrs.options ? attrs.options : 'no-repeat center');
+                            if(!isNaN(attrs.alignY)) {
+                                element[0].style.backgroundPositionY = attrs.alignY + '%';
+                            }
                             element[0].style.backgroundSize = 'cover';
                             element[0].style.filter = '';
                             if(!WATCH_URL) {

@@ -3,7 +3,10 @@
         <div class="loading-indicator"></div>
     </div>
     <div data-ng-if="!loaders.page">
-        <div class="recipe-jumbotron" imgur-loader="{{recipe.url}}" auto-watch="true">
+        <div style="height: 40vh; padding:12px; margin-bottom:9px"
+             ng-style="jumbotronStyle"
+             class="recipe-jumbotron"
+             imgur-loader="{{recipe.url}}" align-y="{{recipe.imgAlignY}}" auto-watch="true">
             <div class="form-group row">
                 <div class="col-sm-2"></div>
                 <div class="form-inline col-sm-8">
@@ -32,8 +35,27 @@
                 </div>
                 <div class="col-sm-2"></div>
             </div>
+            <div class="form-group row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="float-left">
+                                <span class="helper-text">Move image up or down</span>
+                                <button class="btn btn-outline" ng-click="setImgAlignY(-3)" style="background-color: #ffffff99;" type="button">
+                                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                                </button>
+                                <button class="btn btn-outline" ng-click="setImgAlignY(3)" style="background-color: #ffffff99;" type="button">
+                                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
         </div>
-        <div class="recipe-jumbotron textAlignLeft">
+        <div class="container recipe-jumbotron textAlignLeft">
             <div class="form-inline form-group row">
                 <div class="input-group col-sm-3 marginBottom1em">
                     <ff-icon class="{{ 'back-' + recipe.color }} input-group-addon" icon="'MIT'"></ff-icon>
