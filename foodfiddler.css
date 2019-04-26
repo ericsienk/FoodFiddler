@@ -802,5 +802,8 @@ ff-icon.lg-icon .icon {
         padding: 0;
         max-width: 275px;
         animation: slideUp .2s ease;
+        border-radius: 0;
+        border-top-left-radius: 26px;
+        border-top-right-radius: 26px;
     }
 }
